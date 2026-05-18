@@ -21,8 +21,10 @@ const quickLinks = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
   { name: "Services", href: "/services" },
+  { name: "Hair Loss Treatment", href: "/treatments/hair-loss" },
   { name: "Gallery", href: "/gallery" },
   { name: "Contact Us", href: "/contact" },
+
 ];
 
 export default function Footer() {

@@ -64,7 +64,6 @@ export default function AboutDoctor() {
           <h2 className="mt-2 text-3xl font-semibold text-[#0E2A5A] md:text-4xl">
             Meet{" "}
             <span className="text-[#6EDC8C]">Dr. Rekha Saroha</span>
-            <span className="ml-2 text-sm font-medium text-gray-500">(Hair Expert)</span>
           </h2>
         </div>
 

@@ -18,6 +18,8 @@ import {
 import Navbar from "@/sections/home/Navbar/Navbar";
 import Footer from "@/sections/home/Footer/Footer";
 
+
+
 interface Video {
   guid: string;
   title: string;
@@ -88,15 +90,15 @@ export default function GalleryPage() {
   const hasMore = visibleCount < videos.length;
 
   return (
-    <main className="overflow-hidden bg-white">
+    <main className="bg-white overflow-hidden">
       
       <Navbar />
 
-      {/* HERO SECTION */}
-<section className="relative overflow-hidden bg-gradient-to-br from-[#001E3C] via-[#0B2C66] to-[#001E3C] pt-40 pb-20 lg:pt-44">        
+      {/* HERO SECTION - Modern & Compact (Matching Services Page) */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#001E3C] via-[#0B2C66] to-[#001E3C] pt-32 pb-16 lg:pt-36 lg:pb-20">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-1 mb-4">
-            <Sparkles className="h-3.5 w-3.5 text-[#123B7A]" />
+            <Sparkles className="h-3.5 w-3.5 text-[#6EDC8C]" />
             <span className="text-xs font-semibold text-white">Our Gallery</span>
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white">
@@ -107,30 +109,36 @@ export default function GalleryPage() {
           </p>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" className="w-full">
+        {/* Wave Bottom */}
+          <div className="absolute bottom-[-1px] left-0 right-0 overflow-hidden leading-none">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 80"
+    preserveAspectRatio="none"
+    className="block h-[82px] w-full"
+  >
             <path fill="#ffffff" fillOpacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
           </svg>
         </div>
       </section>
 
       {/* IMAGE GALLERY SECTION */}
-      <section className="py-12 md:py-16">
+<section className="relative z-10 -mt-[2px] bg-white py-12 md:py-16">     
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <div className="inline-flex items-center gap-2 bg-[#123B7A]/10 rounded-full px-2.5 py-0.5 mb-2">
-              <ImageIcon className="h-3 w-3 text-[#123B7A]" />
-              <span className="text-[10px] font-semibold text-[#001E3C] uppercase tracking-wide">Gallery Images</span>
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#6EDC8C]/15 px-2.5 py-1 mb-2">
+              <ImageIcon className="h-3 w-3 text-[#6EDC8C]" />
+              <span className="text-[10px] font-semibold text-[#0E2A5A] uppercase tracking-wide">Gallery Images</span>
             </div>
-            <h2 className="text-xl font-semibold text-[#001E3C]">Our <span className="text-[#123B7A]">Clinic Gallery</span></h2>
-            <div className="w-8 h-px bg-[#123B7A] mx-auto mt-2" />
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#0E2A5A]">Our <span className="text-[#6EDC8C]">Clinic Gallery</span></h2>
+            <div className="h-0.5 w-10 bg-[#6EDC8C] mx-auto mt-1.5" />
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {galleryImages.map((image, index) => (
               <div
                 key={index}
-                className="group relative cursor-pointer overflow-hidden rounded-lg aspect-square"
+                className="group relative cursor-pointer overflow-hidden rounded-xl aspect-square shadow-md hover:shadow-xl transition-all duration-300"
                 onClick={() => setSelectedImage(image)}
               >
                 <Image
@@ -152,32 +160,32 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* VIDEO GALLERY SECTION - All Videos */}
+      {/* VIDEO GALLERY SECTION */}
       <section className="bg-[#F0F4F9] py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <div className="inline-flex items-center gap-2 bg-[#123B7A]/10 rounded-full px-2.5 py-0.5 mb-2">
-              <Video className="h-3 w-3 text-[#123B7A]" />
-              <span className="text-[10px] font-semibold text-[#001E3C] uppercase tracking-wide">Video Gallery</span>
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#6EDC8C]/15 px-2.5 py-1 mb-2">
+              <Video className="h-3 w-3 text-[#6EDC8C]" />
+              <span className="text-[10px] font-semibold text-[#0E2A5A] uppercase tracking-wide">Video Gallery</span>
             </div>
-            <h2 className="text-xl font-semibold text-[#001E3C]">Watch Our <span className="text-[#123B7A]">Videos</span></h2>
-            <div className="w-8 h-px bg-[#123B7A] mx-auto mt-2" />
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#0E2A5A]">Watch Our <span className="text-[#6EDC8C]">Videos</span></h2>
+            <div className="h-0.5 w-10 bg-[#6EDC8C] mx-auto mt-1.5" />
           </div>
 
           {loading ? (
             <div className="flex justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-[#123B7A]" />
+              <Loader2 className="h-8 w-8 animate-spin text-[#6EDC8C]" />
             </div>
           ) : (
             <>
-              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {displayedVideos.map((video, index) => {
                   const videoId = getVideoId(video.guid);
                   return (
                     <div
                       key={index}
                       onClick={() => setSelectedVideo(video)}
-                      className="group cursor-pointer overflow-hidden rounded-xl bg-white shadow-md transition-all hover:-translate-y-1 hover:shadow-lg"
+                      className="group cursor-pointer overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                     >
                       <div className="relative aspect-video overflow-hidden">
                         <img
@@ -185,9 +193,9 @@ export default function GalleryPage() {
                           alt={video.title}
                           className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-black/30 transition group-hover:bg-black/40" />
+                        <div className="absolute inset-0 bg-black/30 transition duration-300 group-hover:bg-black/40" />
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="bg-red-600/90 rounded-full p-3 shadow-lg transition group-hover:scale-110">
+                          <div className="bg-red-600/90 rounded-full p-3 shadow-lg transition duration-300 group-hover:scale-110">
                             <Play className="h-6 w-6 text-white ml-0.5" />
                           </div>
                         </div>
@@ -196,7 +204,7 @@ export default function GalleryPage() {
                         </div>
                       </div>
                       <div className="p-3">
-                        <h3 className="font-semibold text-[#001E3C] text-sm line-clamp-1">{video.title}</h3>
+                        <h3 className="font-semibold text-[#0E2A5A] text-sm line-clamp-1">{video.title}</h3>
                         <p className="text-xs text-gray-500 mt-1">
                           {new Date(video.pubDate).toLocaleDateString("en-US", {
                             year: "numeric",
@@ -223,7 +231,7 @@ export default function GalleryPage() {
                   <button
                     onClick={loadMore}
                     disabled={loadingMore}
-                    className="inline-flex items-center gap-2 rounded-full border-2 border-[#123B7A] bg-transparent px-6 py-2 text-sm font-semibold text-[#123B7A] transition-all hover:bg-[#123B7A] hover:text-white disabled:opacity-50"
+                    className="inline-flex items-center gap-2 rounded-full border-2 border-[#6EDC8C] bg-transparent px-6 py-2 text-sm font-semibold text-[#6EDC8C] transition-all duration-300 hover:bg-[#6EDC8C] hover:text-white disabled:opacity-50"
                   >
                     {loadingMore ? (
                       <>
@@ -246,7 +254,7 @@ export default function GalleryPage() {
                   <a
                     href="https://www.youtube.com/@Drrekhasaroha"
                     target="_blank"
-                    className="inline-flex items-center gap-2 bg-red-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition hover:bg-red-700 hover:scale-105"
+                    className="inline-flex items-center gap-2 bg-red-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:bg-red-700 hover:scale-105"
                   >
                     <FaYoutube className="h-4 w-4" />
                     Subscribe to Our Channel
@@ -263,7 +271,7 @@ export default function GalleryPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm" onClick={() => setSelectedImage(null)}>
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow-lg"
+            className="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow-lg transition hover:scale-110"
           >
             <X className="h-5 w-5 text-black" />
           </button>
@@ -284,7 +292,7 @@ export default function GalleryPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm" onClick={() => setSelectedVideo(null)}>
           <button
             onClick={() => setSelectedVideo(null)}
-            className="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow-lg"
+            className="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow-lg transition hover:scale-110"
           >
             <X className="h-5 w-5 text-black" />
           </button>

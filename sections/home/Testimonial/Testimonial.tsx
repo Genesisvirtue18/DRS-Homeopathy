@@ -50,8 +50,9 @@ export default function Testimonials() {
   const videoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
   const autoPlayTimer = useRef<NodeJS.Timeout | null>(null);
 
-  const visibleVideos = testimonials.slice(currentIndex, currentIndex + 3);
-  const totalSlides = Math.ceil(testimonials.length / 3);
+  // Show 2 videos on desktop for larger size
+  const visibleVideos = testimonials.slice(currentIndex, currentIndex + 2);
+  const totalSlides = Math.ceil(testimonials.length / 2);
 
   // Auto-scroll functionality
   useEffect(() => {
@@ -68,8 +69,8 @@ export default function Testimonials() {
   }, [currentIndex, isAutoPlaying]);
 
   const nextSlide = () => {
-    if (currentIndex + 3 < testimonials.length) {
-      setCurrentIndex(currentIndex + 3);
+    if (currentIndex + 2 < testimonials.length) {
+      setCurrentIndex(currentIndex + 2);
     } else {
       setCurrentIndex(0);
     }
@@ -83,10 +84,10 @@ export default function Testimonials() {
   };
 
   const prevSlide = () => {
-    if (currentIndex - 3 >= 0) {
-      setCurrentIndex(currentIndex - 3);
+    if (currentIndex - 2 >= 0) {
+      setCurrentIndex(currentIndex - 2);
     } else {
-      setCurrentIndex(Math.floor((testimonials.length - 1) / 3) * 3);
+      setCurrentIndex(Math.floor((testimonials.length - 1) / 2) * 2);
     }
     Object.values(videoRefs.current).forEach((ref) => {
       if (ref) {
@@ -116,14 +117,14 @@ export default function Testimonials() {
 
   const goToSlide = (index: number) => {
     setIsAutoPlaying(false);
-    setCurrentIndex(index * 3);
+    setCurrentIndex(index * 2);
     setTimeout(() => {
       setIsAutoPlaying(true);
     }, 10000);
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#F8FBFF] via-white to-[#F8FBFF] py-5 md:py-5">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#F8FBFF] via-white to-[#F8FBFF] py-8 md:py-12">
       
       {/* Background Decorations */}
       <div className="absolute -left-20 -top-20 h-80 w-80 rounded-full bg-[#6EDC8C]/5 blur-3xl animate-pulse" />
@@ -131,8 +132,8 @@ export default function Testimonials() {
       
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
         
-        {/* Section Header - Impressive Mobile Design */}
-        <div className="mb-10 text-center">
+        {/* Section Header */}
+        <div className="mb-8 md:mb-10 text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#6EDC8C]/20 to-[#6EDC8C]/10 px-4 py-1.5 mb-3">
             <Star className="h-3.5 w-3.5 text-[#6EDC8C] fill-[#6EDC8C]" />
             <span className="text-xs font-semibold text-[#0E2A5A]">Patient Stories</span>
@@ -153,29 +154,29 @@ export default function Testimonials() {
             <div className="h-px w-8 bg-gradient-to-l from-transparent to-[#6EDC8C]"></div>
           </div>
           
-          <p className="mt-3 text-xs text-gray-500 sm:text-sm">Real stories from our happy patients</p>
+          <p className="mt-3 text-xs text-gray-500 sm:text-sm">Watch our patients share their success stories</p>
         </div>
 
-        {/* Desktop Carousel */}
+        {/* Desktop Carousel - 2 larger videos */}
         <div className="hidden lg:block">
-          <div className="relative px-8">
+          <div className="relative px-12">
             {/* Navigation Buttons */}
             <button
               onClick={prevSlide}
               className="absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white p-3 shadow-xl text-[#0E2A5A] transition-all duration-300 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white"
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="h-6 w-6" />
             </button>
             
             <button
               onClick={nextSlide}
               className="absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white p-3 shadow-xl text-[#0E2A5A] transition-all duration-300 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white"
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="h-6 w-6" />
             </button>
 
-            {/* Video Grid */}
-            <div className="grid grid-cols-3 gap-6">
+            {/* Video Grid - 2 columns for larger videos */}
+            <div className="grid grid-cols-2 gap-8">
               {visibleVideos.map((testimonial) => (
                 <div
                   key={testimonial.id}
@@ -191,19 +192,21 @@ export default function Testimonials() {
                       src={testimonial.video}
                       className="h-full w-full object-contain"
                       controls
+                      controlsList="nodownload"
                       onPlay={() => handleVideoPlay(testimonial.id)}
                       onPause={() => setPlayingId(null)}
                       playsInline
                     />
 
                     {/* Video Badge */}
-                    <div className="absolute bottom-2 right-2 rounded-full bg-black/60 px-2 py-1 text-[10px] text-white backdrop-blur-sm">
+                    <div className="absolute bottom-3 right-3 rounded-full bg-black/60 px-3 py-1 text-xs text-white backdrop-blur-sm">
                       Testimonial {testimonial.id}
                     </div>
                   </div>
                   
-                  <div className="p-4">
-                    <p className="text-xs text-gray-500">Verified Patient</p>
+                  <div className="p-5">
+                  
+                    <p className="text-sm text-gray-500">Verified Patient</p>
                   </div>
                 </div>
               ))}
@@ -216,50 +219,48 @@ export default function Testimonials() {
                   key={idx}
                   onClick={() => goToSlide(idx)}
                   className={`rounded-full transition-all duration-300 ${
-                    Math.floor(currentIndex / 3) === idx
+                    Math.floor(currentIndex / 2) === idx
                       ? "w-8 h-2 bg-[#6EDC8C]"
                       : "w-2 h-2 bg-gray-300 hover:bg-gray-400"
                   }`}
                 />
               ))}
             </div>
-
-            {/* Auto-play Indicator */}
-           
           </div>
         </div>
 
-        {/* Mobile Design - Horizontal Scroll with Snap Points */}
+        {/* Mobile Design - Larger horizontal scroll */}
         <div className="lg:hidden">
           <div className="relative">
-            {/* Mobile Horizontal Scroll Container */}
             <div className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide" style={{ scrollSnapType: "x mandatory" }}>
-              <div className="flex gap-4" style={{ width: "max-content" }}>
+              <div className="flex gap-5" style={{ width: "max-content" }}>
                 {testimonials.map((testimonial, idx) => (
                   <div
                     key={testimonial.id}
-                    className="w-[280px] flex-shrink-0"
+                    className="w-[320px] flex-shrink-0"
                     style={{ scrollSnapAlign: "start" }}
                   >
                     <div className="group overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
-                      <div className="relative aspect-video bg-gradient-to-br from-[#0E2A5A] to-[#1E3A6E]">
+                      <div className="relative bg-gradient-to-br from-[#0E2A5A] to-[#1E3A6E]">
                         <video
                           ref={(el) => {
                             videoRefs.current[testimonial.id] = el;
                           }}
                           src={testimonial.video}
-                          className="h-full w-full object-contain"
+                          className="w-full object-contain"
                           controls
+                          controlsList="nodownload"
                           playsInline
+                          style={{ maxHeight: "400px" }}
                         />
-                        <div className="absolute bottom-2 right-2 rounded-full bg-black/60 px-2 py-0.5 text-[8px] text-white backdrop-blur-sm">
+                        <div className="absolute bottom-2 right-2 rounded-full bg-black/60 px-2 py-0.5 text-[10px] text-white backdrop-blur-sm">
                           #{testimonial.id}
                         </div>
                       </div>
-                      <div className="p-3">
+                      <div className="p-4">
                         <div className="flex items-center gap-1 mb-2">
                           {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="h-2.5 w-2.5 fill-[#6EDC8C] text-[#6EDC8C]" />
+                            <Star key={i} className="h-3 w-3 fill-[#6EDC8C] text-[#6EDC8C]" />
                           ))}
                         </div>
                         <p className="text-xs text-gray-500">Verified Patient</p>
@@ -272,13 +273,13 @@ export default function Testimonials() {
             
             {/* Scroll Hint */}
             <div className="mt-4 flex justify-center">
-              <div className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1">
+              <div className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1.5">
                 <div className="flex gap-1">
-                  <div className="h-1 w-4 rounded-full bg-[#6EDC8C]"></div>
-                  <div className="h-1 w-1 rounded-full bg-gray-300"></div>
-                  <div className="h-1 w-1 rounded-full bg-gray-300"></div>
+                  <div className="h-1.5 w-5 rounded-full bg-[#6EDC8C]"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-gray-300"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-gray-300"></div>
                 </div>
-                <span className="text-[10px] text-gray-500">Swipe to see more</span>
+                <span className="text-xs text-gray-500">Swipe to see more →</span>
               </div>
             </div>
           </div>

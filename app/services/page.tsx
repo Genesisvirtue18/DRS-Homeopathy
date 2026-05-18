@@ -1,4 +1,4 @@
-"use client";
+import type { Metadata } from "next";
 
 import Image from "next/image";
 import { Sparkles, Shield, CheckCircle, ArrowRight, Heart, Users, Clock, Award } from "lucide-react";
@@ -88,40 +88,67 @@ const mostTreatments = {
   ],
 };
 
+export const metadata: Metadata = {
+  title:
+    "DRS Homoeopathy Services | Best Homoeopathy Treatment in Delhi",
+
+  description:
+    "We are having 16 years of experience in field of homoeopathy. We provide all treatment both online and offline for hair loss, migraine, kidney stone, weight loss, PCOD and chronic diseases.",
+
+  keywords: [
+    "Homeopathy Services",
+    "Best Homoeopathy Treatment Delhi",
+    "Hair Loss Treatment",
+    "Kidney Stone Treatment",
+    "Migraine Treatment",
+    "PCOD Treatment",
+    "Weight Loss Homeopathy",
+    "DRS Homoeopathy",
+  ],
+};
+
 export default function ServicesPage() {
   return (
     <main className="bg-white overflow-hidden">
       <Navbar />
 
       {/* HERO SECTION - Modern & Compact */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#001E3C] via-[#0B2C66] to-[#001E3C] pt-40 pb-20 lg:pt-44">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#001E3C] via-[#0B2C66] to-[#001E3C] pt-32 pb-16 lg:pt-36 lg:pb-20">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-5">
-            <Sparkles className="h-4 w-4 text-[#123B7A]" />
-            <span className="text-sm font-semibold text-white">Our Services</span>
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-1 mb-4">
+            <Sparkles className="h-3.5 w-3.5 text-[#6EDC8C]" />
+            <span className="text-xs font-semibold text-white">Our Services</span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white">
             Advanced <span className="text-[#6EDC8C]">Homeopathy</span>
           </h1>
-          <p className="max-w-2xl mx-auto mt-4 text-gray-300">
+          <p className="max-w-2xl mx-auto mt-3 text-sm text-gray-300">
             With years of experience and backed by state-of-the-art technology, DRS Homeopathy is dedicated to helping you be your best self.
           </p>
         </div>
 
         {/* Wave Bottom */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" className="w-full">
-            <path fill="#ffffff" fillOpacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
+         <div className="absolute bottom-[-1px] left-0 right-0 overflow-hidden leading-none">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 80"
+    preserveAspectRatio="none"
+    className="block h-[82px] w-full"
+  >          <path fill="#ffffff" fillOpacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
           </svg>
         </div>
       </section>
 
       {/* TREATMENTS GRID SECTION */}
-      <section className="py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-semibold text-[#001E3C]">Our <span className="text-[#123B7A]">Treatments</span></h2>
-            <div className="w-12 h-0.5 bg-[#123B7A] mx-auto mt-3" />
+<section className="relative z-10 -mt-[2px] bg-white py-12 md:py-16">     
+     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#6EDC8C]/15 px-2.5 py-1 mb-2">
+              <Shield className="h-3 w-3 text-[#6EDC8C]" />
+              <span className="text-[10px] font-semibold text-[#0E2A5A] uppercase tracking-wide">Our Treatments</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#0E2A5A]">Our <span className="text-[#6EDC8C]">Treatments</span></h2>
+            <div className="h-0.5 w-10 bg-[#6EDC8C] mx-auto mt-1.5" />
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -137,11 +164,10 @@ export default function ServicesPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 </div>
-                <div className="p-5">
-                  <h3 className="font-bold text-[#001E3C] text-base leading-tight line-clamp-2 min-h-[3rem]">{item.title}</h3>
-                  <div className="w-8 h-0.5 bg-[#123B7A]/40 my-3" />
-                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">{item.desc}</p>
-
+                <div className="p-4">
+                  <h3 className="font-bold text-[#0E2A5A] text-sm leading-tight line-clamp-2 min-h-[2.5rem]">{item.title}</h3>
+                  <div className="w-8 h-0.5 bg-[#6EDC8C]/40 my-2" />
+                  <p className="text-gray-600 text-xs leading-relaxed line-clamp-3">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -150,33 +176,34 @@ export default function ServicesPage() {
       </section>
 
       {/* MOST TREATMENTS SECTION - Clean & Minimal */}
-      <section className="bg-[#F0F4F9] py-16 md:py-20">
+      <section className="bg-[#F0F4F9] py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
 
             {/* Left Content */}
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#123B7A]/10 rounded-full px-3 py-1 mb-4">
-                <Heart className="h-3.5 w-3.5 text-[#123B7A]" />
-                <span className="text-xs font-semibold text-[#001E3C] uppercase tracking-wide">Most Treatments</span>
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#6EDC8C]/15 px-2.5 py-1 mb-3">
+                <Heart className="h-3 w-3 text-[#6EDC8C]" />
+                <span className="text-[10px] font-semibold text-[#0E2A5A] uppercase tracking-wide">Most Treatments</span>
               </div>
-              <h2 className="text-3xl font-bold text-[#001E3C]">Comprehensive <span className="text-[#123B7A]">Care</span></h2>
-              <p className="mt-3 text-gray-600">Customer service is provided by a highly trained, professional staff who look after your comfort and care and are considerate of your time. Their focus is you.</p>
+              <h2 className="text-2xl font-semibold text-[#0E2A5A]">Comprehensive <span className="text-[#6EDC8C]">Care</span></h2>
+              <div className="h-0.5 w-10 bg-[#6EDC8C] mt-1.5 mb-3" />
+              <p className="text-sm text-gray-600">Customer service is provided by a highly trained, professional staff who look after your comfort and care and are considerate of your time. Their focus is you.</p>
 
-              <div className="grid sm:grid-cols-2 gap-4 mt-8">
+              <div className="grid sm:grid-cols-2 gap-3 mt-6">
                 <div className="space-y-2">
                   {mostTreatments.left.map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-[#123B7A]" />
-                      <span className="text-sm text-gray-700">{item}</span>
+                      <CheckCircle className="h-3.5 w-3.5 text-[#6EDC8C]" />
+                      <span className="text-xs text-gray-700">{item}</span>
                     </div>
                   ))}
                 </div>
                 <div className="space-y-2">
                   {mostTreatments.right.map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-[#123B7A]" />
-                      <span className="text-sm text-gray-700">{item}</span>
+                      <CheckCircle className="h-3.5 w-3.5 text-[#6EDC8C]" />
+                      <span className="text-xs text-gray-700">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -185,7 +212,7 @@ export default function ServicesPage() {
 
             {/* Right Image with Stats Card */}
             <div className="relative">
-              <div className="rounded-2xl overflow-hidden shadow-xl">
+              <div className="rounded-xl overflow-hidden shadow-lg">
                 <Image
                   src="/images/content/banner-right.jpg"
                   alt="DRS Homeopathy Treatment"
@@ -194,16 +221,16 @@ export default function ServicesPage() {
                   className="w-full h-auto object-cover"
                 />
               </div>
-              <div className="absolute -bottom-5 -left-5 bg-white rounded-xl shadow-lg p-4 flex items-center gap-3">
-                <div className="bg-[#123B7A]/10 rounded-full p-2">
-                  <Users className="h-6 w-6 text-[#123B7A]" />
+              <div className="absolute -bottom-4 -left-4 bg-white rounded-lg shadow-md p-3 flex items-center gap-2">
+                <div className="bg-[#6EDC8C]/15 rounded-full p-1.5">
+                  <Users className="h-5 w-5 text-[#6EDC8C]" />
                 </div>
-
+                
               </div>
-              <div className="absolute -top-3 -right-3 bg-white rounded-xl shadow-lg p-3">
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-[#123B7A]" />
-                  <span className="text-sm font-semibold text-[#001E3C]">16+ Years</span>
+              <div className="absolute -top-3 -right-3 bg-white rounded-lg shadow-md p-2.5">
+                <div className="flex items-center gap-1.5">
+                  <Clock className="h-3.5 w-3.5 text-[#6EDC8C]" />
+                  <span className="text-xs font-semibold text-[#0E2A5A]">16+ Years</span>
                 </div>
               </div>
             </div>
@@ -212,30 +239,24 @@ export default function ServicesPage() {
       </section>
 
       {/* SPECIALTIES SECTION - Modern Cards */}
-      <section className="py-14 md:py-16">
+      <section className="py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* HEADER */}
-          <div className="mx-auto mb-10 max-w-2xl text-center">
-
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#123B7A]/10 px-3 py-1">
-
-              <Award className="h-3.5 w-3.5 text-[#123B7A]" />
-
-              <span className="text-[11px] font-semibold uppercase tracking-[2px] text-[#001E3C]">
+          <div className="mx-auto mb-8 max-w-2xl text-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#6EDC8C]/15 px-2.5 py-1 mb-2">
+              <Award className="h-3 w-3 text-[#6EDC8C]" />
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-[#0E2A5A]">
                 Our Expertise
               </span>
             </div>
-
-            <h2 className="text-3xl font-semibold text-[#001E3C] md:text-4xl">
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#0E2A5A]">
               Homeopathy{" "}
-
-              <span className="text-[#123B7A]">
+              <span className="text-[#6EDC8C]">
                 Specialties
               </span>
             </h2>
-
-            <div className="mx-auto mt-3 h-[3px] w-14 rounded-full bg-[#123B7A]" />
+            <div className="mx-auto mt-1.5 h-0.5 w-10 rounded-full bg-[#6EDC8C]" />
           </div>
 
           {/* GRID */}
@@ -244,29 +265,25 @@ export default function ServicesPage() {
             {specialties.map((item, idx) => (
               <div
                 key={idx}
-                className="group relative overflow-hidden rounded-2xl border border-[#123B7A]/10 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="group relative overflow-hidden rounded-xl border border-[#6EDC8C]/15 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
-
                 {/* TOP LINE */}
-                <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#001E3C] to-[#123B7A]" />
+                <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#0E2A5A] to-[#6EDC8C]" />
 
                 {/* ICON */}
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#123B7A]/10 transition-all duration-300 group-hover:bg-[#123B7A]">
-
-                  <Shield className="h-5 w-5 text-[#123B7A] transition-all duration-300 group-hover:text-white" />
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#6EDC8C]/15 transition-all duration-300 group-hover:bg-[#6EDC8C]">
+                  <Shield className="h-5 w-5 text-[#0E2A5A] transition-all duration-300 group-hover:text-white" />
                 </div>
 
                 {/* TITLE */}
-                <h3 className="text-[17px] font-bold leading-7 text-[#001E3C]">
+                <h3 className="text-base font-bold leading-6 text-[#0E2A5C]">
                   {item.title}
                 </h3>
 
                 {/* DESCRIPTION */}
-                <p className="mt-2 text-sm leading-6 text-gray-600">
+                <p className="mt-1.5 text-xs leading-5 text-gray-600">
                   {item.desc}
                 </p>
-
-
               </div>
             ))}
           </div>

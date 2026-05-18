@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import {
     MapPin,
     Phone,
@@ -15,6 +14,23 @@ import {
     MessageCircle,
     Heart,
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title:
+    "Contact DRS Homoeopathy | Dr Rekha Saroha | Best Homeopathy Clinic Delhi",
+
+  description:
+    "Contact DRS Homoeopathy Clinic by Dr Rekha Saroha for online and offline consultation, appointments and expert homeopathy treatment in Delhi.",
+
+  keywords: [
+    "Contact DRS Homoeopathy",
+    "Dr Rekha Saroha Contact",
+    "Homeopathy Clinic Delhi",
+    "Book Homeopathy Appointment",
+    "Best Homeopathy Doctor Delhi",
+    "Online Homeopathy Consultation",
+  ],
+};
 
 import {
     FaYoutube,

@@ -48,10 +48,11 @@
 //     </html>
 //   );
 // }
-
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+
+import FloatingButtons from "@/components/FloatingButtons";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -82,6 +83,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={poppins.className}>
         {children}
+
+        {/* Floating Buttons */}
+        <FloatingButtons />
       </body>
     </html>
   );

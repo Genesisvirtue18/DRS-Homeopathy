@@ -24,6 +24,7 @@ import { IoMdMail } from "react-icons/io";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
+  { name: "Hair Loss", href: "/treatments/hair-loss" },
   { name: "Services", href: "/services" },
   { name: "Gallery", href: "/gallery" },
   { name: "Contact", href: "/contact" },
@@ -167,7 +168,7 @@ export default function Navbar() {
 
       {/* COMPACT MAIN NAVBAR */}
       <nav
-        className={`mx-auto flex h-20 max-w-7xl items-center justify-between px-6 transition-all duration-300 ${
+        className={`mx-auto flex h-15 max-w-7xl items-center justify-between px-6 transition-all duration-300 ${
           scrolled ? "py-1" : "py-2"
         }`}
       >

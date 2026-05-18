@@ -208,9 +208,8 @@ export default function Specializations() {
   };
 
   return (
-    <section className="bg-gradient-to-br from-gray-50 to-white py-12">
+    <section className="overflow-x-hidden bg-gradient-to-br from-gray-50 to-white py-12">
       <div className="mx-auto max-w-7xl px-4">
-        
         {/* Header */}
         <div className="mb-8 text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-[#6EDC8C]/10 px-4 py-1.5 mb-3">
@@ -232,14 +231,14 @@ export default function Specializations() {
           {/* Scroll Buttons */}
           <button
             onClick={scrollLeft}
-            className="absolute -left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg text-[#0E2A5A] opacity-0 transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white lg:-left-6"
+            className="absolute left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 shadow-lg text-[#0E2A5A] opacity-0 transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white lg:flex"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
           
           <button
             onClick={scrollRight}
-            className="absolute -right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg text-[#0E2A5A] opacity-0 transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white lg:-right-6"
+            className="absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 shadow-lg text-[#0E2A5A] opacity-0 transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white lg:flex"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
@@ -273,7 +272,7 @@ export default function Specializations() {
             {specializations.map((item) => (
               <div
                 key={item.id}
-                className="w-[280px] flex-shrink-0 bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                className="w-[320px] flex-shrink-0 bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
               >
                 {/* Image */}
                 <div className="relative h-44 w-full overflow-hidden">
@@ -291,28 +290,31 @@ export default function Specializations() {
                 </div>
                 
                 {/* Content */}
-                <div className="p-4">
-                  <h3 className="text-base font-bold text-[#0E2A5A] line-clamp-2 min-h-[48px]">
+                <div className="p-4 flex flex-col flex-1">
+                  <h3 className="text-base font-bold text-[#0E2A5A] mb-2">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-xs text-gray-600 leading-relaxed line-clamp-3 min-h-[60px]">
+                  <p className="text-xs text-gray-600 leading-relaxed">
                     {item.description}
                   </p>
                   
-                  {/* Contact Section */}
-                  <div className="mt-4 flex items-center gap-2">
+                  {/* Spacer to push buttons to bottom */}
+                  <div className="flex-1"></div>
+                  
+                  {/* Contact Section - All buttons at bottom on same line */}
+                  <div className="mt-4 flex items-center gap-2 flex-nowrap w-full">
                     <Link
                       href={`tel:${item.phone.replace(/\s/g, '')}`}
-                      className="flex-1 flex items-center justify-center gap-1.5 rounded-lg bg-[#6EDC8C] px-3 py-2 text-xs font-semibold text-[#0E2A5A] transition-all duration-300 hover:bg-[#5bc87a] hover:scale-105"
+                      className="flex-1 flex items-center justify-center gap-1.5 rounded-lg bg-[#6EDC8C] px-2 py-2 text-xs font-semibold text-[#0E2A5A] transition-all duration-300 hover:bg-[#5bc87a] hover:scale-105 whitespace-nowrap"
                     >
-                      <Phone className="h-3 w-3" />
-                      Call Now
+                      <Phone className="h-3 w-3 flex-shrink-0" />
+                      <span>Call Now</span>
                     </Link>
                     
                     <Link
                       href={item.facebook}
                       target="_blank"
-                      className="rounded-lg bg-[#1877F2] p-2 text-white transition-all duration-300 hover:bg-[#1664d8] hover:scale-105"
+                      className="rounded-lg bg-[#1877F2] p-2 text-white transition-all duration-300 hover:bg-[#1664d8] hover:scale-105 flex-shrink-0"
                     >
                       <FaFacebookF className="h-3 w-3" />
                     </Link>
@@ -320,7 +322,7 @@ export default function Specializations() {
                     <Link
                       href={item.instagram}
                       target="_blank"
-                      className="rounded-lg bg-gradient-to-r from-[#E4405F] to-[#833AB4] p-2 text-white transition-all duration-300 hover:opacity-90 hover:scale-105"
+                      className="rounded-lg bg-gradient-to-r from-[#E4405F] to-[#833AB4] p-2 text-white transition-all duration-300 hover:opacity-90 hover:scale-105 flex-shrink-0"
                     >
                       <FaInstagram className="h-3 w-3" />
                     </Link>
