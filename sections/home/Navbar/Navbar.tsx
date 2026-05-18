@@ -24,7 +24,7 @@ import { IoMdMail } from "react-icons/io";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  
+
   { name: "Services", href: "/services" },
   { name: "Gallery", href: "/gallery" },
   { name: "Contact", href: "/contact" },
@@ -102,11 +102,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-500 ${
-        scrolled
-          ? "bg-white/98 shadow-2xl backdrop-blur-md"
-          : "bg-white shadow-lg"
-      }`}
+      className={`fixed top-0 z-50 w-full transition-all duration-500 ${scrolled
+        ? "bg-white/98 shadow-2xl backdrop-blur-md"
+        : "bg-white shadow-lg"
+        }`}
     >
       {/* COMPACT TOP BAR */}
       <div className="hidden bg-gradient-to-r from-[#001E3C] via-[#0B2C66] to-[#001E3C] lg:block relative overflow-hidden">
@@ -168,9 +167,8 @@ export default function Navbar() {
 
       {/* COMPACT MAIN NAVBAR */}
       <nav
-        className={`mx-auto flex h-15 max-w-7xl items-center justify-between px-6 transition-all duration-300 ${
-          scrolled ? "py-1" : "py-2"
-        }`}
+        className={`mx-auto flex h-15 max-w-7xl items-center justify-between px-6 transition-all duration-300 ${scrolled ? "py-1" : "py-2"
+          }`}
       >
         {/* LOGO with animation */}
         <Link href="/" className="group relative flex items-center">
@@ -234,29 +232,46 @@ export default function Navbar() {
 
         {/* MOBILE BUTTON */}
         <button
-          onClick={() => setOpen(!open)}
-          className="relative z-50 lg:hidden"
-          aria-label="Toggle menu"
+          onClick={() => setOpen(true)}
+          className="relative z-[1001] lg:hidden"
+          style={{ display: open ? "none" : "block" }}
+          aria-label="Open menu"
         >
-          <div className="relative h-9 w-9 rounded-full bg-gradient-to-br from-[#001E3C] to-[#1E3A6E] flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110">
-            {open ? (
-              <X className="h-4 w-4 text-white" />
-            ) : (
-              <Menu className="h-4 w-4 text-white" />
-            )}
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#001E3C] to-[#1E3A6E] shadow-lg transition-all duration-300 hover:scale-110">
+            <Menu className="h-4 w-4 text-white" />
           </div>
         </button>
       </nav>
 
       {/* MOBILE MENU */}
-<div
-  className={`fixed left-0 top-0 z-[999] h-screen w-full bg-white transition-all duration-300 lg:hidden ${
-    open
-      ? "translate-x-0 opacity-100"
-      : "pointer-events-none translate-x-full opacity-0"
-  }`}
->
+      <div
+        className={`fixed left-0 top-0 z-[999] h-screen w-full bg-white transition-all duration-300 lg:hidden ${open
+          ? "translate-x-0 opacity-100"
+          : "pointer-events-none translate-x-full opacity-0"
+          }`}
+      >
         <div className="flex h-full flex-col overflow-y-auto">
+        <div className="flex mt-4 items-center justify-between border-b border-gray-100 px-6 py-4">
+  <Link href="/" onClick={() => setOpen(false)}>
+    <Image
+      src="/images/logo.png"
+      alt="DRS Homeopathy"
+      width={150}
+      height={50}
+      className="h-auto w-auto"
+      priority
+    />
+  </Link>
+
+  <button
+    onClick={() => setOpen(false)}
+    className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#001E3C] to-[#1E3A6E] shadow-lg"
+    aria-label="Close menu"
+  >
+    <X className="h-5 w-5 text-white" />
+  </button>
+</div>
+
           <div className="flex-1 px-6 py-6">
             {/* Navigation Links */}
             <div className="space-y-1">
