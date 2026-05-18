@@ -66,39 +66,58 @@ export default function Navbar() {
   }, []);
 
   // Add animation keyframes to document head
-  useEffect(() => {
-    const style = document.createElement("style");
-    style.textContent = `
-      @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateX(-20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
+useEffect(() => {
+  if (typeof window === "undefined") return;
+
+  const style = document.createElement("style");
+
+  style.textContent = `
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
       }
-      @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-3px); }
+      to {
+        opacity: 1;
+        transform: translateX(0);
       }
-      @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.7; }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
       }
-      .animate-float {
-        animation: float 3s ease-in-out infinite;
+      50% {
+        transform: translateY(-3px);
       }
-      .animate-pulse-slow {
-        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
       }
-    `;
-    document.head.appendChild(style);
-    return () => {
+      50% {
+        opacity: 0.7;
+      }
+    }
+
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .animate-pulse-slow {
+      animation: pulse 2s ease-in-out infinite;
+    }
+  `;
+
+  document.head.appendChild(style);
+
+  return () => {
+    if (document.head.contains(style)) {
       document.head.removeChild(style);
-    };
-  }, []);
+    }
+  };
+}, []);
 
   return (
     <header
