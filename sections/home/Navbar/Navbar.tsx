@@ -176,7 +176,7 @@ export default function Navbar() {
           <div className="absolute -inset-2 rounded-2xl bg-gradient-to-r from-[#6EDC8C]/20 to-transparent opacity-0 blur-xl group-hover:opacity-100 transition duration-500"></div>
           <div className="relative">
             <Image
-              src="/logo.png"
+              src="/images/logo.png"
               alt="DRS Homeopathy"
               width={180}
               height={60}

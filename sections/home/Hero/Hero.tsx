@@ -75,15 +75,14 @@ export default function Hero() {
           alt={`Slide ${currentSlide + 1}`}
           fill
           priority
-          className={`object-cover object-center transition-all duration-[8000ms] ${
-            imageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-110"
-          }`}
+          className={`object-cover object-center transition-all duration-[8000ms] ${imageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-110"
+            }`}
           style={{
             animation: imageLoaded ? "kenburns 20s ease-in-out infinite" : "none",
           }}
           onLoad={() => setImageLoaded(true)}
         />
-          </div>
+      </div>
 
       {/* Content */}
       {currentSlideData.showContent && (
@@ -132,7 +131,7 @@ export default function Hero() {
             style={{ animationDelay: "0.8s", animationFillMode: "both" }}
           >
             <Link
-href={currentSlideData.ctaLink || "/"}
+              href={currentSlideData.ctaLink || "/"}
               className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#6EDC8C] to-[#4CAF50] px-7 py-3 font-semibold text-[#0E2A5A] transition-all duration-300 hover:scale-105 hover:shadow-xl md:px-9 md:py-3.5"
             >
               <span className="text-sm md:text-base">{currentSlideData.ctaText}</span>
@@ -152,7 +151,7 @@ href={currentSlideData.ctaLink || "/"}
           >
             <ChevronLeft className="h-4 w-4 md:h-5 md:w-5" />
           </button>
-          
+
           <button
             onClick={nextSlide}
             className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/30 p-2 text-white backdrop-blur-sm transition-all duration-300 hover:bg-black/50 hover:scale-110 md:right-6 md:p-2.5"
@@ -170,11 +169,10 @@ href={currentSlideData.ctaLink || "/"}
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`transition-all duration-300 ${
-                currentSlide === index
+              className={`transition-all duration-300 ${currentSlide === index
                   ? "w-6 h-1 rounded-full bg-[#6EDC8C]"
                   : "w-1.5 h-1 rounded-full bg-white/40 hover:bg-white/60"
-              }`}
+                }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
