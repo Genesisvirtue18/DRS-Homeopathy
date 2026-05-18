@@ -24,7 +24,7 @@ import { IoMdMail } from "react-icons/io";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Hair Loss", href: "/treatments/hair-loss" },
+  
   { name: "Services", href: "/services" },
   { name: "Gallery", href: "/gallery" },
   { name: "Contact", href: "/contact" },

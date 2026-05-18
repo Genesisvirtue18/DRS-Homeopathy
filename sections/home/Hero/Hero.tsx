@@ -45,6 +45,19 @@ const slides = [
 ];
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  checkMobile();
+
+  window.addEventListener("resize", checkMobile);
+
+  return () => window.removeEventListener("resize", checkMobile);
+}, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -72,14 +85,14 @@ export default function Hero() {
       <div className="absolute inset-0">
         <div
           className="h-full w-full bg-no-repeat"
-         style={{
-  backgroundImage: `url(${currentSlideData.image})`,
-  backgroundSize: "cover",
-  backgroundPosition:
-    currentSlide === 0
-      ? "72% center"
-      : "center center",
-}}
+          style={{
+            backgroundImage: `url(${currentSlideData.image})`,
+backgroundSize: isMobile ? "contain" : "cover",
+            backgroundPosition:
+              currentSlide === 0
+                ? "72% center"
+                : "center center",
+          }}
         />
 
       </div>

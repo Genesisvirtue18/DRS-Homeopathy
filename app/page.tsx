@@ -36,7 +36,7 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
-      {/* <AboutDoctor />
+      <AboutDoctor />
       <Testimonials />
       <SpecializationPage />
       <HomeDeliveryBanner />
@@ -48,7 +48,7 @@ export default function Home() {
       <PatientTestimonials />
       <OurVideos />
       <AppointmentBanner />
-      <Footer /> */}
+      <Footer />
     </>
   );
 }
