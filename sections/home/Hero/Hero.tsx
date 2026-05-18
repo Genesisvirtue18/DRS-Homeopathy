@@ -72,14 +72,14 @@ export default function Hero() {
       <div className="absolute inset-0">
         <div
           className="h-full w-full bg-no-repeat"
-          style={{
-            backgroundImage: `url(${currentSlideData.image})`,
-            backgroundSize: window.innerWidth < 768 ? "contain" : "cover",
-            backgroundPosition:
-              currentSlide === 0
-                ? "72% center"
-                : "center center",
-          }}
+         style={{
+  backgroundImage: `url(${currentSlideData.image})`,
+  backgroundSize: "cover",
+  backgroundPosition:
+    currentSlide === 0
+      ? "72% center"
+      : "center center",
+}}
         />
 
       </div>
