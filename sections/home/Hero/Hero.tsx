@@ -132,7 +132,7 @@ export default function Hero() {
             style={{ animationDelay: "0.8s", animationFillMode: "both" }}
           >
             <Link
-              href={currentSlideData.ctaLink}
+href={currentSlideData.ctaLink || "/"}
               className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#6EDC8C] to-[#4CAF50] px-7 py-3 font-semibold text-[#0E2A5A] transition-all duration-300 hover:scale-105 hover:shadow-xl md:px-9 md:py-3.5"
             >
               <span className="text-sm md:text-base">{currentSlideData.ctaText}</span>
