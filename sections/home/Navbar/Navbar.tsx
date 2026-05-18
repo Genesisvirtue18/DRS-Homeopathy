@@ -249,14 +249,13 @@ export default function Navbar() {
       </nav>
 
       {/* MOBILE MENU */}
-      <div
-        className={`fixed inset-0 z-40 bg-white/98 backdrop-blur-xl transition-all duration-500 lg:hidden ${
-          open
-            ? "visible opacity-100"
-            : "invisible opacity-0 pointer-events-none"
-        }`}
-        style={{ top: "64px" }}
-      >
+<div
+  className={`fixed left-0 top-0 z-[999] h-screen w-full bg-white transition-all duration-300 lg:hidden ${
+    open
+      ? "translate-x-0 opacity-100"
+      : "pointer-events-none translate-x-full opacity-0"
+  }`}
+>
         <div className="flex h-full flex-col overflow-y-auto">
           <div className="flex-1 px-6 py-6">
             {/* Navigation Links */}
