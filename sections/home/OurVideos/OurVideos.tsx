@@ -14,53 +14,137 @@ interface Video {
 }
 
 export default function OurVideos() {
-  const [videos, setVideos] = useState<Video[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
+
+   const fallbackVideos: Video[] = [
+  {
+    guid: "kX0Mgy3UQ3s",
+    title: "Homeopathy Treatment Video",
+    pubDate: "2026-05-20",
+    thumbnail: "https://img.youtube.com/vi/kX0Mgy3UQ3s/mqdefault.jpg",
+  },
+
+  {
+    guid: "1R9yWsQngT8",
+    title: "Homeopathy Treatment Video",
+    pubDate: "2026-05-20",
+    thumbnail: "https://img.youtube.com/vi/1R9yWsQngT8/hqdefault.jpg",
+  },
+   {
+    guid: "yJrMWvKfLFI",
+    title: "Homeopathy Treatment Video",
+    pubDate: "2026-05-20",
+    thumbnail: "https://img.youtube.com/vi/yJrMWvKfLFI/hqdefault.jpg",
+  },
+  {
+    guid: "EqkdBn7pwXs",
+    title: "Homeopathy Treatment Video",
+    pubDate: "2026-05-20",
+    thumbnail: "https://img.youtube.com/vi/EqkdBn7pwXs/hqdefault.jpg",
+  },
+   {
+    guid: "6VNRF9fDypo",
+    title: "Homeopathy Treatment Video",
+    pubDate: "2026-05-20",
+    thumbnail: "https://img.youtube.com/vi/6VNRF9fDypo/hqdefault.jpg",
+  }, {
+    guid: "Luk5-4d8Qb0",
+    title: "Homeopathy Treatment Video",
+    pubDate: "2026-05-20",
+    thumbnail: "https://img.youtube.com/vi/Luk5-4d8Qb0/hqdefault.jpg",
+  }
+];
+  //const [videos, setVideos] = useState<Video[]>([]);
+  const [videos, setVideos] = useState<Video[]>(
+  fallbackVideos.slice(0, 6)
+);
+
+const [allVideos, setAllVideos] = useState<Video[]>(
+  fallbackVideos
+);
+
+  const [loading, setLoading] = useState(false);
+  //const [loadingMore, setLoadingMore] = useState(false);
   const [visibleCount, setVisibleCount] = useState(6);
-  const [allVideos, setAllVideos] = useState<Video[]>([]);
+  //const [allVideos, setAllVideos] = useState<Video[]>([]);
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [playerReady, setPlayerReady] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
+  
 
-  useEffect(() => {
-    const fetchVideos = async () => {
-      try {
-        const channelId = "UCIzJsjm1gTFEHd8zeCXIC8Q";
-        const response = await fetch(
-          `https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`
-        );
-        const data = await response.json();
-        
-        const videoData = data.items.map((item: any) => ({
-          guid: item.guid,
-          title: item.title,
-          pubDate: item.pubDate,
-          thumbnail: `https://img.youtube.com/vi/${item.guid.split(":").pop()}/mqdefault.jpg`,
-        }));
-        
-        setAllVideos(videoData);
-        setVideos(videoData.slice(0, 6));
-        setLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch videos", error);
-        setLoading(false);
-      }
-    };
 
-    fetchVideos();
-  }, []);
 
-  const loadMore = () => {
-    setLoadingMore(true);
-    setTimeout(() => {
-      const newCount = visibleCount + 6;
-      setVisibleCount(newCount);
-      setVideos(allVideos.slice(0, newCount));
-      setLoadingMore(false);
-    }, 500);
-  };
+// useEffect(() => {
+//   const fetchVideos = async () => {
+//     try {
+//       const channelId = "UCIzJsjm1gTFEHd8zeCXIC8Q";
+
+//       const feedUrl = encodeURIComponent(
+//         `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`
+//       );
+
+//       // FREE CORS PROXY
+//       const response = await fetch(
+//         `https://api.allorigins.win/raw?url=${feedUrl}`
+//       );
+
+//       const xmlText = await response.text();
+
+//       console.log(xmlText);
+
+//       const parser = new DOMParser();
+
+//       const xml = parser.parseFromString(xmlText, "text/xml");
+
+//       const entries = Array.from(
+//         xml.getElementsByTagName("entry")
+//       );
+
+//       const videoData = entries.map((entry: any) => {
+//         const videoId =
+//           entry.getElementsByTagName("yt:videoId")[0]
+//             ?.textContent || "";
+
+//         const title =
+//           entry.getElementsByTagName("title")[0]
+//             ?.textContent || "";
+
+//         const pubDate =
+//           entry.getElementsByTagName("published")[0]
+//             ?.textContent || "";
+
+//         return {
+//           guid: videoId,
+//           title,
+//           pubDate,
+//           thumbnail: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+//         };
+//       });
+
+//       setAllVideos(videoData);
+//       setVideos(videoData.slice(0, 6));
+
+//     } catch (error) {
+//       console.error("Failed to fetch videos:", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   fetchVideos();
+// }, []);
+
+
+
+  // const loadMore = () => {
+  //   setLoadingMore(true);
+  //   setTimeout(() => {
+  //     const newCount = visibleCount + 6;
+  //     setVisibleCount(newCount);
+  //     setVideos(allVideos.slice(0, newCount));
+  //     setLoadingMore(false);
+  //   }, 500);
+  // };
 
   const hasMore = videos.length < allVideos.length;
 
@@ -95,14 +179,14 @@ export default function OurVideos() {
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white to-[#F0F4F9] py-5 md:py-5">
-      
+
       {/* Background Blurs */}
       <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-[#123B7A]/10 blur-3xl" />
       <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-[#0B2C66]/10 blur-3xl" />
       <div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2F5DA8]/5 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* HEADER */}
         <div className="mb-10 text-center">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1">
@@ -163,29 +247,9 @@ export default function OurVideos() {
                       <Eye className="inline h-3 w-3 mr-1" />
                       Click to Play
                     </div>
-                    <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-red-600 px-2 py-1 shadow-lg">
-                      <FaYoutube className="h-3 w-3 text-white" />
-                      <span className="text-xs font-medium text-white">YouTube</span>
-                    </div>
+                    
                   </div>
-                  <div className="p-4">
-                    <h3 className="line-clamp-2 text-sm font-bold leading-tight text-[#001E3C] transition group-hover:text-[#123B7A]">
-                      {video.title}
-                    </h3>
-                    <div className="mt-3 flex items-center justify-between">
-                      <span className="text-xs text-gray-400">
-                        {new Date(video.pubDate).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                        })}
-                      </span>
-                      <span className="inline-flex items-center gap-1 text-xs font-medium text-red-600">
-                        Play Video
-                        <Play className="h-3 w-3" />
-                      </span>
-                    </div>
-                  </div>
+                 
                 </div>
               ))}
             </div>
@@ -198,7 +262,7 @@ export default function OurVideos() {
 
             {hasMore && (
               <div className="mt-6 text-center">
-                <button
+                {/* <button
                   onClick={loadMore}
                   disabled={loadingMore}
                   className="group inline-flex items-center gap-2 rounded-full border-2 border-[#123B7A] bg-transparent px-8 py-2.5 text-sm font-semibold text-[#123B7A] transition-all duration-300 hover:bg-[#123B7A] hover:text-white hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -214,7 +278,7 @@ export default function OurVideos() {
                       <Sparkles className="h-3.5 w-3.5 opacity-0 transition group-hover:opacity-100" />
                     </>
                   )}
-                </button>
+                </button> */}
               </div>
             )}
 
@@ -237,17 +301,15 @@ export default function OurVideos() {
 
       {/* Video Modal - Optimized */}
       {selectedVideo && (
-        <div 
-          className={`fixed inset-0 z-50 flex items-center justify-center bg-black/95 transition-all duration-300 ${
-            isFullscreen ? "p-0" : "p-4"
-          }`}
+        <div
+          className={`fixed inset-0 z-50 flex items-center justify-center bg-black/95 transition-all duration-300 ${isFullscreen ? "p-0" : "p-4"
+            }`}
           onClick={closeVideo}
         >
-          <div 
+          <div
             ref={modalRef}
-            className={`relative bg-black transition-all duration-300 ${
-              isFullscreen ? "w-full h-full" : "w-full max-w-5xl rounded-2xl overflow-hidden"
-            }`}
+            className={`relative bg-black transition-all duration-300 ${isFullscreen ? "w-full h-full" : "w-full max-w-5xl rounded-2xl overflow-hidden"
+              }`}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Loading Indicator */}
@@ -262,9 +324,7 @@ export default function OurVideos() {
 
             {/* Modal Header */}
             <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 bg-gradient-to-b from-black/60 to-transparent">
-              <h3 className="text-white font-semibold text-sm md:text-base line-clamp-1 pr-8 max-w-[70%]">
-                {selectedVideo.title}
-              </h3>
+              
               <div className="flex items-center gap-2">
                 <button
                   onClick={toggleFullscreen}
@@ -297,20 +357,11 @@ export default function OurVideos() {
             {/* Modal Footer */}
             <div className="absolute bottom-0 left-0 right-0 z-20 p-4 bg-gradient-to-t from-black/60 to-transparent">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <FaYoutube className="h-5 w-5 text-red-600" />
-                  <span className="text-xs text-white/80">
-                    {new Date(selectedVideo.pubDate).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
-                </div>
+               
                 <a
                   href={`https://www.youtube.com/watch?v=${getVideoId(selectedVideo.guid)}`}
                   target="_blank"
-                  className="text-xs text-white/60 hover:text-white transition"
+                  className="text-xs text-white hover:text-white transition"
                   rel="noopener noreferrer"
                 >
                   Watch on YouTube ↗

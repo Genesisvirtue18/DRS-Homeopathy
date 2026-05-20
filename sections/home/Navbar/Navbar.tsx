@@ -13,18 +13,20 @@ import {
   MapPin,
   Mail,
   ArrowRight,
+  Truck,
+  Bell,
 } from "lucide-react";
 import {
   FaFacebookF,
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
+
 import { IoMdMail } from "react-icons/io";
 
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-
   { name: "Services", href: "/services" },
   { name: "Gallery", href: "/gallery" },
   { name: "Contact", href: "/contact" },
@@ -68,33 +70,66 @@ export default function Navbar() {
   // Add animation keyframes to document head
   useEffect(() => {
     const style = document.createElement("style");
+
     style.textContent = `
-      @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateX(-20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
       }
-      @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-3px); }
+      to {
+        opacity: 1;
+        transform: translateX(0);
       }
-      @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.7; }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
       }
-      .animate-float {
-        animation: float 3s ease-in-out infinite;
+      50% {
+        transform: translateY(-3px);
       }
-      .animate-pulse-slow {
-        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
       }
-    `;
+      50% {
+        opacity: 0.7;
+      }
+    }
+
+    /* Continuous looping marquee */
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .marquee-track {
+      display: flex;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-content {
+      display: flex;
+      animation: marquee 25s linear infinite;
+    }
+
+    .marquee-content:hover {
+      animation-play-state: paused;
+    }
+  `;
+
     document.head.appendChild(style);
+
     return () => {
       document.head.removeChild(style);
     };
@@ -102,11 +137,53 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-500 ${scrolled
-        ? "bg-white/98 shadow-2xl backdrop-blur-md"
-        : "bg-white shadow-lg"
-        }`}
+      className={`fixed top-0 z-50 w-full transition-all duration-500 ${
+        scrolled
+          ? "bg-white/98 shadow-2xl backdrop-blur-md"
+          : "bg-white shadow-lg"
+      }`}
     >
+      {/* RUNNING MARQUEE - Continuous Loop */}
+      <div className="relative overflow-hidden bg-[#0E2A5A] py-1.5">
+        <div className="marquee-track">
+          <div className="marquee-content flex items-center gap-10 text-xs font-medium text-white">
+            {/* First set of items */}
+            <span className="flex items-center gap-2">
+              <Bell className="h-3.5 w-3.5 text-white" />
+              Note - अब आप हमसे भारत के किसी भी कोने में online consultation द्वारा होम्योपैथिक दवाईयां मंगा सकते है
+            </span>
+            <span className="flex items-center gap-2 font-semibold text-white">
+              <Truck className="h-3.5 w-3.5 text-white" />
+              Home Delivery Available
+            </span>
+            <a
+              href="tel:09911293060"
+              className="flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-semibold text-white transition hover:bg-white hover:text-[#0E2A5A]"
+            >
+              <Phone className="h-3 w-3" />
+              Call Now : +91 9911293060
+            </a>
+            
+            {/* Duplicate items for seamless looping */}
+            <span className="flex items-center gap-2">
+              <Bell className="h-3.5 w-3.5 text-white" />
+              Note - अब आप हमसे भारत के किसी भी कोने में online consultation द्वारा होम्योपैथिक दवाईयां मंगा सकते है
+            </span>
+            <span className="flex items-center gap-2 font-semibold text-white">
+              <Truck className="h-3.5 w-3.5 text-white" />
+              Home Delivery Available
+            </span>
+            <a
+              href="tel:09911293060"
+              className="flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-semibold text-white transition hover:bg-white hover:text-[#0E2A5A]"
+            >
+              <Phone className="h-3 w-3" />
+              Call Now : +91 9911293060
+            </a>
+          </div>
+        </div>
+      </div>
+      
       {/* COMPACT TOP BAR */}
       <div className="hidden bg-gradient-to-r from-[#001E3C] via-[#0B2C66] to-[#001E3C] lg:block relative overflow-hidden">
         <div
@@ -167,8 +244,9 @@ export default function Navbar() {
 
       {/* COMPACT MAIN NAVBAR */}
       <nav
-        className={`mx-auto flex h-15 max-w-7xl items-center justify-between px-6 transition-all duration-300 ${scrolled ? "py-1" : "py-2"
-          }`}
+        className={`mx-auto flex h-15 max-w-7xl items-center justify-between px-6 transition-all duration-300 ${
+          scrolled ? "py-1" : "py-2"
+        }`}
       >
         {/* LOGO with animation */}
         <Link href="/" className="group relative flex items-center">
@@ -232,45 +310,45 @@ export default function Navbar() {
 
         {/* MOBILE BUTTON */}
         <button
-          onClick={() => setOpen(true)}
-          className="relative z-[1001] lg:hidden"
-          style={{ display: open ? "none" : "block" }}
-          aria-label="Open menu"
-        >
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#001E3C] to-[#1E3A6E] shadow-lg transition-all duration-300 hover:scale-110">
-            <Menu className="h-4 w-4 text-white" />
-          </div>
-        </button>
+  onClick={() => setOpen(true)}
+  className="relative z-[1001] lg:hidden"
+  aria-label="Open menu"
+>
+  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#001E3C] to-[#1E3A6E] shadow-lg transition-all duration-300 hover:scale-110">
+    <Menu className="h-4 w-4 text-white" />
+  </div>
+</button>
       </nav>
 
       {/* MOBILE MENU */}
       <div
-        className={`fixed left-0 top-0 z-[999] h-screen w-full bg-white transition-all duration-300 lg:hidden ${open
-          ? "translate-x-0 opacity-100"
-          : "pointer-events-none translate-x-full opacity-0"
-          }`}
+        className={`fixed left-0 top-0 z-[999] h-screen w-full bg-white transition-all duration-300 lg:hidden ${
+          open
+            ? "translate-x-0 opacity-100"
+            : "pointer-events-none translate-x-full opacity-0"
+        }`}
       >
         <div className="flex h-full flex-col overflow-y-auto">
-        <div className="flex mt-4 items-center justify-between border-b border-gray-100 px-6 py-4">
-  <Link href="/" onClick={() => setOpen(false)}>
-    <Image
-      src="/images/logo.png"
-      alt="DRS Homeopathy"
-      width={150}
-      height={50}
-      className="h-auto w-auto"
-      priority
-    />
-  </Link>
+          <div className="flex mt-4 items-center justify-between border-b border-gray-100 px-6 py-4">
+            <Link href="/" onClick={() => setOpen(false)}>
+              <Image
+                src="/images/logo.png"
+                alt="DRS Homeopathy"
+                width={150}
+                height={50}
+                className="h-auto w-auto"
+                priority
+              />
+            </Link>
 
-  <button
-    onClick={() => setOpen(false)}
-    className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#001E3C] to-[#1E3A6E] shadow-lg"
-    aria-label="Close menu"
-  >
-    <X className="h-5 w-5 text-white" />
-  </button>
-</div>
+            <button
+              onClick={() => setOpen(false)}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#001E3C] to-[#1E3A6E] shadow-lg"
+              aria-label="Close menu"
+            >
+              <X className="h-5 w-5 text-white" />
+            </button>
+          </div>
 
           <div className="flex-1 px-6 py-6">
             {/* Navigation Links */}
@@ -353,7 +431,7 @@ export default function Navbar() {
             {/* Trust Badge */}
             <div className="mt-6 flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#6EDC8C]/20 to-transparent px-4 py-2">
               <Sparkles size={14} className="text-[#6EDC8C] animate-pulse" />
-              <span className="text-xs font-semibold text-[#001E3C]">Trusted by 10,000+ Patients</span>
+              <span className="text-xs font-semibold text-[#001E3C]">Trusted by 50,000+ Patients</span>
             </div>
           </div>
         </div>

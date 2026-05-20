@@ -36,17 +36,17 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
-      <AboutDoctor />
-      <Testimonials />
       <SpecializationPage />
-      <HomeDeliveryBanner />
-      <HowItWorks />
-      <Services />
+      <AboutDoctor />
       <Treatments />
+      <OurVideos />
+      <Testimonials />
+      {/* <HomeDeliveryBanner /> */}
+      <HowItWorks />
       <MostTreatments />
       <Achievements />
       <PatientTestimonials />
-      <OurVideos />
+      <Services />
       <AppointmentBanner />
       <Footer />
     </>
