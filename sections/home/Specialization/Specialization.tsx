@@ -371,6 +371,7 @@
 //     </section>
 //   );
 // }
+
 "use client";
 
 import Image from "next/image";
@@ -579,7 +580,7 @@ export default function Specializations() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+      { threshold: 0.15, rootMargin: "0px 0px -80px 0px" }
     );
 
     if (sectionRef.current) {
@@ -595,24 +596,24 @@ export default function Specializations() {
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -300, behavior: "smooth" });
+      scrollContainerRef.current.scrollBy({ left: -320, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 300, behavior: "smooth" });
+      scrollContainerRef.current.scrollBy({ left: 320, behavior: "smooth" });
     }
   };
 
   return (
     <section ref={sectionRef} className="overflow-x-hidden bg-gradient-to-br from-gray-50 to-white py-12">
       <div className="mx-auto max-w-7xl px-4">
-        {/* Header */}
+        {/* Header with smooth scroll animations */}
         <div className="mb-8 text-center">
           <div
             className={`inline-flex items-center gap-2 rounded-full bg-[#6EDC8C]/10 px-4 py-1.5 mb-3 transition-all duration-700 ${
-              hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
             <span className="text-xs font-semibold text-[#0E2A5A]">हमारी विशेषज्ञताएं</span>
@@ -620,7 +621,7 @@ export default function Specializations() {
 
           <div
             className={`flex items-center justify-center gap-3 transition-all duration-700 delay-100 ${
-              hasAnimated ? "opacity-100 scale-100" : "opacity-0 scale-90"
+              hasAnimated ? "opacity-100 scale-100" : "opacity-0 scale-95"
             }`}
           >
             <Image
@@ -654,7 +655,7 @@ export default function Specializations() {
 
           <p
             className={`mt-3 text-sm text-gray-500 transition-all duration-700 delay-300 ${
-              hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
             होम्योपैथिक द्वारा विभिन्न रोगों का सफल इलाज
@@ -712,7 +713,7 @@ export default function Specializations() {
               @keyframes slideUp {
                 from {
                   opacity: 0;
-                  transform: translateY(40px);
+                  transform: translateY(50px);
                 }
                 to {
                   opacity: 1;
@@ -725,69 +726,29 @@ export default function Specializations() {
               }
 
               .card-slide.animate {
-                animation: slideUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+                animation: slideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
               }
 
-              .card-slide.animate:nth-child(1) {
-                animation-delay: 0.05s;
-              }
-              .card-slide.animate:nth-child(2) {
-                animation-delay: 0.1s;
-              }
-              .card-slide.animate:nth-child(3) {
-                animation-delay: 0.15s;
-              }
-              .card-slide.animate:nth-child(4) {
-                animation-delay: 0.2s;
-              }
-              .card-slide.animate:nth-child(5) {
-                animation-delay: 0.25s;
-              }
-              .card-slide.animate:nth-child(6) {
-                animation-delay: 0.3s;
-              }
-              .card-slide.animate:nth-child(7) {
-                animation-delay: 0.35s;
-              }
-              .card-slide.animate:nth-child(8) {
-                animation-delay: 0.4s;
-              }
-              .card-slide.animate:nth-child(9) {
-                animation-delay: 0.45s;
-              }
-              .card-slide.animate:nth-child(10) {
-                animation-delay: 0.5s;
-              }
-              .card-slide.animate:nth-child(11) {
-                animation-delay: 0.55s;
-              }
-              .card-slide.animate:nth-child(12) {
-                animation-delay: 0.6s;
-              }
-              .card-slide.animate:nth-child(13) {
-                animation-delay: 0.65s;
-              }
-              .card-slide.animate:nth-child(14) {
-                animation-delay: 0.7s;
-              }
-              .card-slide.animate:nth-child(15) {
-                animation-delay: 0.75s;
-              }
-              .card-slide.animate:nth-child(16) {
-                animation-delay: 0.8s;
-              }
-              .card-slide.animate:nth-child(17) {
-                animation-delay: 0.85s;
-              }
-              .card-slide.animate:nth-child(18) {
-                animation-delay: 0.9s;
-              }
-              .card-slide.animate:nth-child(19) {
-                animation-delay: 0.95s;
-              }
-              .card-slide.animate:nth-child(20) {
-                animation-delay: 1s;
-              }
+              .card-slide.animate:nth-child(1) { animation-delay: 0.05s; }
+              .card-slide.animate:nth-child(2) { animation-delay: 0.1s; }
+              .card-slide.animate:nth-child(3) { animation-delay: 0.15s; }
+              .card-slide.animate:nth-child(4) { animation-delay: 0.2s; }
+              .card-slide.animate:nth-child(5) { animation-delay: 0.25s; }
+              .card-slide.animate:nth-child(6) { animation-delay: 0.3s; }
+              .card-slide.animate:nth-child(7) { animation-delay: 0.35s; }
+              .card-slide.animate:nth-child(8) { animation-delay: 0.4s; }
+              .card-slide.animate:nth-child(9) { animation-delay: 0.45s; }
+              .card-slide.animate:nth-child(10) { animation-delay: 0.5s; }
+              .card-slide.animate:nth-child(11) { animation-delay: 0.55s; }
+              .card-slide.animate:nth-child(12) { animation-delay: 0.6s; }
+              .card-slide.animate:nth-child(13) { animation-delay: 0.65s; }
+              .card-slide.animate:nth-child(14) { animation-delay: 0.7s; }
+              .card-slide.animate:nth-child(15) { animation-delay: 0.75s; }
+              .card-slide.animate:nth-child(16) { animation-delay: 0.8s; }
+              .card-slide.animate:nth-child(17) { animation-delay: 0.85s; }
+              .card-slide.animate:nth-child(18) { animation-delay: 0.9s; }
+              .card-slide.animate:nth-child(19) { animation-delay: 0.95s; }
+              .card-slide.animate:nth-child(20) { animation-delay: 1s; }
             `}</style>
 
             {specializations.map((item) => (
@@ -860,7 +821,7 @@ export default function Specializations() {
         {/* Scroll Hint */}
         <div
           className={`mt-6 text-center transition-all duration-700 delay-700 ${
-            hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5 transition-all duration-300 hover:bg-gray-200 cursor-pointer group/hint">

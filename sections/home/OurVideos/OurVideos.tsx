@@ -1,3 +1,380 @@
+// "use client";
+
+// import { useEffect, useState, useRef } from "react";
+// import { Play, Sparkles, Eye, Loader2, X, Maximize2, Minimize2 } from "lucide-react";
+// import {
+//   FaYoutube,
+// } from "react-icons/fa";
+
+// interface Video {
+//   guid: string;
+//   title: string;
+//   pubDate: string;
+//   thumbnail: string;
+// }
+
+// export default function OurVideos() {
+
+//    const fallbackVideos: Video[] = [
+//   {
+//     guid: "kX0Mgy3UQ3s",
+//     title: "Homeopathy Treatment Video",
+//     pubDate: "2026-05-20",
+//     thumbnail: "https://img.youtube.com/vi/kX0Mgy3UQ3s/mqdefault.jpg",
+//   },
+
+//   {
+//     guid: "1R9yWsQngT8",
+//     title: "Homeopathy Treatment Video",
+//     pubDate: "2026-05-20",
+//     thumbnail: "https://img.youtube.com/vi/1R9yWsQngT8/hqdefault.jpg",
+//   },
+//    {
+//     guid: "yJrMWvKfLFI",
+//     title: "Homeopathy Treatment Video",
+//     pubDate: "2026-05-20",
+//     thumbnail: "https://img.youtube.com/vi/yJrMWvKfLFI/hqdefault.jpg",
+//   },
+//   {
+//     guid: "EqkdBn7pwXs",
+//     title: "Homeopathy Treatment Video",
+//     pubDate: "2026-05-20",
+//     thumbnail: "https://img.youtube.com/vi/EqkdBn7pwXs/hqdefault.jpg",
+//   },
+//    {
+//     guid: "6VNRF9fDypo",
+//     title: "Homeopathy Treatment Video",
+//     pubDate: "2026-05-20",
+//     thumbnail: "https://img.youtube.com/vi/6VNRF9fDypo/hqdefault.jpg",
+//   }, {
+//     guid: "Luk5-4d8Qb0",
+//     title: "Homeopathy Treatment Video",
+//     pubDate: "2026-05-20",
+//     thumbnail: "https://img.youtube.com/vi/Luk5-4d8Qb0/hqdefault.jpg",
+//   }
+// ];
+//   //const [videos, setVideos] = useState<Video[]>([]);
+//   const [videos, setVideos] = useState<Video[]>(
+//   fallbackVideos.slice(0, 6)
+// );
+
+// const [allVideos, setAllVideos] = useState<Video[]>(
+//   fallbackVideos
+// );
+
+//   const [loading, setLoading] = useState(false);
+//   //const [loadingMore, setLoadingMore] = useState(false);
+//   const [visibleCount, setVisibleCount] = useState(6);
+//   //const [allVideos, setAllVideos] = useState<Video[]>([]);
+//   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
+//   const [isFullscreen, setIsFullscreen] = useState(false);
+//   const [playerReady, setPlayerReady] = useState(false);
+//   const modalRef = useRef<HTMLDivElement>(null);
+  
+
+
+
+// // useEffect(() => {
+// //   const fetchVideos = async () => {
+// //     try {
+// //       const channelId = "UCIzJsjm1gTFEHd8zeCXIC8Q";
+
+// //       const feedUrl = encodeURIComponent(
+// //         `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`
+// //       );
+
+// //       // FREE CORS PROXY
+// //       const response = await fetch(
+// //         `https://api.allorigins.win/raw?url=${feedUrl}`
+// //       );
+
+// //       const xmlText = await response.text();
+
+// //       console.log(xmlText);
+
+// //       const parser = new DOMParser();
+
+// //       const xml = parser.parseFromString(xmlText, "text/xml");
+
+// //       const entries = Array.from(
+// //         xml.getElementsByTagName("entry")
+// //       );
+
+// //       const videoData = entries.map((entry: any) => {
+// //         const videoId =
+// //           entry.getElementsByTagName("yt:videoId")[0]
+// //             ?.textContent || "";
+
+// //         const title =
+// //           entry.getElementsByTagName("title")[0]
+// //             ?.textContent || "";
+
+// //         const pubDate =
+// //           entry.getElementsByTagName("published")[0]
+// //             ?.textContent || "";
+
+// //         return {
+// //           guid: videoId,
+// //           title,
+// //           pubDate,
+// //           thumbnail: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+// //         };
+// //       });
+
+// //       setAllVideos(videoData);
+// //       setVideos(videoData.slice(0, 6));
+
+// //     } catch (error) {
+// //       console.error("Failed to fetch videos:", error);
+// //     } finally {
+// //       setLoading(false);
+// //     }
+// //   };
+
+// //   fetchVideos();
+// // }, []);
+
+
+
+//   // const loadMore = () => {
+//   //   setLoadingMore(true);
+//   //   setTimeout(() => {
+//   //     const newCount = visibleCount + 6;
+//   //     setVisibleCount(newCount);
+//   //     setVideos(allVideos.slice(0, newCount));
+//   //     setLoadingMore(false);
+//   //   }, 500);
+//   // };
+
+//   const hasMore = videos.length < allVideos.length;
+
+//   const openVideo = (video: Video) => {
+//     setSelectedVideo(video);
+//     setPlayerReady(false);
+//     document.body.style.overflow = "hidden";
+//   };
+
+//   const closeVideo = () => {
+//     setSelectedVideo(null);
+//     setIsFullscreen(false);
+//     setPlayerReady(false);
+//     document.body.style.overflow = "auto";
+//   };
+
+//   const toggleFullscreen = () => {
+//     setIsFullscreen(!isFullscreen);
+//   };
+
+//   useEffect(() => {
+//     const handleEsc = (e: KeyboardEvent) => {
+//       if (e.key === "Escape") {
+//         closeVideo();
+//       }
+//     };
+//     window.addEventListener("keydown", handleEsc);
+//     return () => window.removeEventListener("keydown", handleEsc);
+//   }, []);
+
+//   const getVideoId = (guid: string) => guid.split(":").pop();
+
+//   return (
+//     <section className="relative overflow-hidden bg-gradient-to-b from-white to-[#F0F4F9] py-5 md:py-5">
+
+//       {/* Background Blurs */}
+//       <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-[#123B7A]/10 blur-3xl" />
+//       <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-[#0B2C66]/10 blur-3xl" />
+//       <div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2F5DA8]/5 blur-3xl" />
+
+//       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+//         {/* HEADER */}
+//         <div className="mb-10 text-center">
+//           <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1">
+//             <FaYoutube className="h-3.5 w-3.5 text-red-600" />
+//             <span className="text-xs font-semibold uppercase tracking-wider text-[#001E3C]">
+//               YouTube Videos
+//             </span>
+//           </div>
+
+//           <h2 className="text-2xl font-semibold tracking-tight text-[#001E3C] md:text-3xl lg:text-4xl">
+//             Latest{" "}
+//             <span className="text-[#123B7A]">
+//               Videos
+//             </span>
+//           </h2>
+
+//           <div className="mx-auto mt-2 h-0.5 w-12 rounded-full bg-gradient-to-r from-[#001E3C] to-[#123B7A]" />
+
+//           <p className="mx-auto mt-3 max-w-2xl text-sm text-[#0B2C66]/70">
+//             Watch expert advice, patient success stories and treatment awareness videos from Dr Rekha Saroha.
+//           </p>
+//         </div>
+
+//         {/* Loading State */}
+//         {loading && (
+//           <div className="flex justify-center py-20">
+//             <div className="flex flex-col items-center gap-3">
+//               <Loader2 className="h-12 w-12 animate-spin text-[#123B7A]" />
+//               <p className="text-sm text-[#0B2C66]">Loading videos...</p>
+//             </div>
+//           </div>
+//         )}
+
+//         {/* VIDEO GRID */}
+//         {!loading && (
+//           <>
+//             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+//               {videos.map((video, index) => (
+//                 <div
+//                   key={index}
+//                   onClick={() => openVideo(video)}
+//                   className="group overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
+//                 >
+//                   <div className="relative overflow-hidden">
+//                     <img
+//                       src={video.thumbnail}
+//                       alt={video.title}
+//                       loading="lazy"
+//                       className="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
+//                     />
+//                     <div className="absolute inset-0 bg-black/30 transition duration-300 group-hover:bg-black/40" />
+//                     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+//                       <div className="flex h-14 w-14 items-center justify-center rounded-full bg-red-600/90 shadow-lg transition-all duration-300 hover:scale-110 hover:bg-red-600">
+//                         <Play className="h-6 w-6 text-white ml-0.5" />
+//                       </div>
+//                     </div>
+//                     <div className="absolute bottom-3 right-3 rounded-md bg-black/70 px-2 py-1 text-xs text-white">
+//                       <Eye className="inline h-3 w-3 mr-1" />
+//                       Click to Play
+//                     </div>
+                    
+//                   </div>
+                 
+//                 </div>
+//               ))}
+//             </div>
+
+//             <div className="mt-6 text-center">
+//               <p className="text-sm text-gray-500">
+//                 Showing {videos.length} of {allVideos.length} videos
+//               </p>
+//             </div>
+
+//             {hasMore && (
+//               <div className="mt-6 text-center">
+//                 {/* <button
+//                   onClick={loadMore}
+//                   disabled={loadingMore}
+//                   className="group inline-flex items-center gap-2 rounded-full border-2 border-[#123B7A] bg-transparent px-8 py-2.5 text-sm font-semibold text-[#123B7A] transition-all duration-300 hover:bg-[#123B7A] hover:text-white hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+//                 >
+//                   {loadingMore ? (
+//                     <>
+//                       <Loader2 className="h-4 w-4 animate-spin" />
+//                       Loading...
+//                     </>
+//                   ) : (
+//                     <>
+//                       Load More Videos
+//                       <Sparkles className="h-3.5 w-3.5 opacity-0 transition group-hover:opacity-100" />
+//                     </>
+//                   )}
+//                 </button> */}
+//               </div>
+//             )}
+
+//             {allVideos.length > 0 && (
+//               <div className="mt-10 text-center">
+//                 <a
+//                   href="https://www.youtube.com/@Drrekhasaroha"
+//                   target="_blank"
+//                   className="group inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-red-700"
+//                 >
+//                   <FaYoutube className="h-4 w-4" />
+//                   Subscribe to Our Channel
+//                   <Sparkles className="h-3.5 w-3.5 opacity-0 transition group-hover:opacity-100" />
+//                 </a>
+//               </div>
+//             )}
+//           </>
+//         )}
+//       </div>
+
+//       {/* Video Modal - Optimized */}
+//       {selectedVideo && (
+//         <div
+//           className={`fixed inset-0 z-50 flex items-center justify-center bg-black/95 transition-all duration-300 ${isFullscreen ? "p-0" : "p-4"
+//             }`}
+//           onClick={closeVideo}
+//         >
+//           <div
+//             ref={modalRef}
+//             className={`relative bg-black transition-all duration-300 ${isFullscreen ? "w-full h-full" : "w-full max-w-5xl rounded-2xl overflow-hidden"
+//               }`}
+//             onClick={(e) => e.stopPropagation()}
+//           >
+//             {/* Loading Indicator */}
+//             {!playerReady && (
+//               <div className="absolute inset-0 flex items-center justify-center bg-black z-10">
+//                 <div className="flex flex-col items-center gap-3">
+//                   <Loader2 className="h-10 w-10 animate-spin text-red-600" />
+//                   <p className="text-sm text-white/70">Loading video...</p>
+//                 </div>
+//               </div>
+//             )}
+
+//             {/* Modal Header */}
+//             <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 bg-gradient-to-b from-black/60 to-transparent">
+              
+//               <div className="flex items-center gap-2">
+//                 <button
+//                   onClick={toggleFullscreen}
+//                   className="text-white/80 hover:text-white transition p-1 rounded-lg hover:bg-white/10"
+//                 >
+//                   {isFullscreen ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
+//                 </button>
+//                 <button
+//                   onClick={closeVideo}
+//                   className="text-white/80 hover:text-white transition p-1 rounded-lg hover:bg-white/10"
+//                 >
+//                   <X className="h-5 w-5" />
+//                 </button>
+//               </div>
+//             </div>
+
+//             {/* Video Player - Optimized with lazy loading */}
+//             <div className={`relative ${isFullscreen ? "h-screen" : "aspect-video"}`}>
+//               <iframe
+//                 src={`https://www.youtube-nocookie.com/embed/${getVideoId(selectedVideo.guid)}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1&enablejsapi=1`}
+//                 title={selectedVideo.title}
+//                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+//                 allowFullScreen
+//                 className="absolute inset-0 h-full w-full"
+//                 style={{ border: 0 }}
+//                 onLoad={() => setPlayerReady(true)}
+//               />
+//             </div>
+
+//             {/* Modal Footer */}
+//             <div className="absolute bottom-0 left-0 right-0 z-20 p-4 bg-gradient-to-t from-black/60 to-transparent">
+//               <div className="flex items-center justify-between">
+               
+//                 <a
+//                   href={`https://www.youtube.com/watch?v=${getVideoId(selectedVideo.guid)}`}
+//                   target="_blank"
+//                   className="text-xs text-white hover:text-white transition"
+//                   rel="noopener noreferrer"
+//                 >
+//                   Watch on YouTube ↗
+//                 </a>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       )}
+//     </section>
+//   );
+// }
+
 "use client";
 
 import { useEffect, useState, useRef } from "react";
@@ -14,137 +391,87 @@ interface Video {
 }
 
 export default function OurVideos() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [visibleVideos, setVisibleVideos] = useState<number[]>([]);
 
-   const fallbackVideos: Video[] = [
-  {
-    guid: "kX0Mgy3UQ3s",
-    title: "Homeopathy Treatment Video",
-    pubDate: "2026-05-20",
-    thumbnail: "https://img.youtube.com/vi/kX0Mgy3UQ3s/mqdefault.jpg",
-  },
-
-  {
-    guid: "1R9yWsQngT8",
-    title: "Homeopathy Treatment Video",
-    pubDate: "2026-05-20",
-    thumbnail: "https://img.youtube.com/vi/1R9yWsQngT8/hqdefault.jpg",
-  },
-   {
-    guid: "yJrMWvKfLFI",
-    title: "Homeopathy Treatment Video",
-    pubDate: "2026-05-20",
-    thumbnail: "https://img.youtube.com/vi/yJrMWvKfLFI/hqdefault.jpg",
-  },
-  {
-    guid: "EqkdBn7pwXs",
-    title: "Homeopathy Treatment Video",
-    pubDate: "2026-05-20",
-    thumbnail: "https://img.youtube.com/vi/EqkdBn7pwXs/hqdefault.jpg",
-  },
-   {
-    guid: "6VNRF9fDypo",
-    title: "Homeopathy Treatment Video",
-    pubDate: "2026-05-20",
-    thumbnail: "https://img.youtube.com/vi/6VNRF9fDypo/hqdefault.jpg",
-  }, {
-    guid: "Luk5-4d8Qb0",
-    title: "Homeopathy Treatment Video",
-    pubDate: "2026-05-20",
-    thumbnail: "https://img.youtube.com/vi/Luk5-4d8Qb0/hqdefault.jpg",
-  }
-];
-  //const [videos, setVideos] = useState<Video[]>([]);
-  const [videos, setVideos] = useState<Video[]>(
-  fallbackVideos.slice(0, 6)
-);
-
-const [allVideos, setAllVideos] = useState<Video[]>(
-  fallbackVideos
-);
-
+  const fallbackVideos: Video[] = [
+    {
+      guid: "kX0Mgy3UQ3s",
+      title: "Homeopathy Treatment Video",
+      pubDate: "2026-05-20",
+      thumbnail: "https://img.youtube.com/vi/kX0Mgy3UQ3s/mqdefault.jpg",
+    },
+    {
+      guid: "1R9yWsQngT8",
+      title: "Homeopathy Treatment Video",
+      pubDate: "2026-05-20",
+      thumbnail: "https://img.youtube.com/vi/1R9yWsQngT8/hqdefault.jpg",
+    },
+    {
+      guid: "yJrMWvKfLFI",
+      title: "Homeopathy Treatment Video",
+      pubDate: "2026-05-20",
+      thumbnail: "https://img.youtube.com/vi/yJrMWvKfLFI/hqdefault.jpg",
+    },
+    {
+      guid: "EqkdBn7pwXs",
+      title: "Homeopathy Treatment Video",
+      pubDate: "2026-05-20",
+      thumbnail: "https://img.youtube.com/vi/EqkdBn7pwXs/hqdefault.jpg",
+    },
+    {
+      guid: "6VNRF9fDypo",
+      title: "Homeopathy Treatment Video",
+      pubDate: "2026-05-20",
+      thumbnail: "https://img.youtube.com/vi/6VNRF9fDypo/hqdefault.jpg",
+    },
+    {
+      guid: "Luk5-4d8Qb0",
+      title: "Homeopathy Treatment Video",
+      pubDate: "2026-05-20",
+      thumbnail: "https://img.youtube.com/vi/Luk5-4d8Qb0/hqdefault.jpg",
+    }
+  ];
+  
+  const [videos, setVideos] = useState<Video[]>(fallbackVideos.slice(0, 6));
+  const [allVideos, setAllVideos] = useState<Video[]>(fallbackVideos);
   const [loading, setLoading] = useState(false);
-  //const [loadingMore, setLoadingMore] = useState(false);
   const [visibleCount, setVisibleCount] = useState(6);
-  //const [allVideos, setAllVideos] = useState<Video[]>([]);
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [playerReady, setPlayerReady] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  
 
+  // Scroll trigger animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+            // Trigger videos one by one
+            videos.forEach((_, idx) => {
+              setTimeout(() => {
+                setVisibleVideos((prev: number[]) => [...prev, idx]);
+              }, idx * 100);
+            });
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -80px 0px" }
+    );
 
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
-// useEffect(() => {
-//   const fetchVideos = async () => {
-//     try {
-//       const channelId = "UCIzJsjm1gTFEHd8zeCXIC8Q";
-
-//       const feedUrl = encodeURIComponent(
-//         `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`
-//       );
-
-//       // FREE CORS PROXY
-//       const response = await fetch(
-//         `https://api.allorigins.win/raw?url=${feedUrl}`
-//       );
-
-//       const xmlText = await response.text();
-
-//       console.log(xmlText);
-
-//       const parser = new DOMParser();
-
-//       const xml = parser.parseFromString(xmlText, "text/xml");
-
-//       const entries = Array.from(
-//         xml.getElementsByTagName("entry")
-//       );
-
-//       const videoData = entries.map((entry: any) => {
-//         const videoId =
-//           entry.getElementsByTagName("yt:videoId")[0]
-//             ?.textContent || "";
-
-//         const title =
-//           entry.getElementsByTagName("title")[0]
-//             ?.textContent || "";
-
-//         const pubDate =
-//           entry.getElementsByTagName("published")[0]
-//             ?.textContent || "";
-
-//         return {
-//           guid: videoId,
-//           title,
-//           pubDate,
-//           thumbnail: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
-//         };
-//       });
-
-//       setAllVideos(videoData);
-//       setVideos(videoData.slice(0, 6));
-
-//     } catch (error) {
-//       console.error("Failed to fetch videos:", error);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   fetchVideos();
-// }, []);
-
-
-
-  // const loadMore = () => {
-  //   setLoadingMore(true);
-  //   setTimeout(() => {
-  //     const newCount = visibleCount + 6;
-  //     setVisibleCount(newCount);
-  //     setVideos(allVideos.slice(0, newCount));
-  //     setLoadingMore(false);
-  //   }, 500);
-  // };
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [hasAnimated, videos]);
 
   const hasMore = videos.length < allVideos.length;
 
@@ -178,7 +505,7 @@ const [allVideos, setAllVideos] = useState<Video[]>(
   const getVideoId = (guid: string) => guid.split(":").pop();
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white to-[#F0F4F9] py-5 md:py-5">
+    <section ref={sectionRef} className="relative overflow-hidden bg-gradient-to-b from-white to-[#F0F4F9] py-12 md:py-16">
 
       {/* Background Blurs */}
       <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-[#123B7A]/10 blur-3xl" />
@@ -187,25 +514,33 @@ const [allVideos, setAllVideos] = useState<Video[]>(
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        {/* HEADER */}
-        <div className="mb-10 text-center">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1">
-            <FaYoutube className="h-3.5 w-3.5 text-red-600" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#001E3C]">
-              YouTube Videos
-            </span>
+        {/* HEADER with scroll animations */}
+        <div className="mb-10 md:mb-12 text-center">
+          <div className={`transition-all duration-700 ${hasAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1">
+              <FaYoutube className="h-3.5 w-3.5 text-red-600" />
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#001E3C]">
+                YouTube Videos
+              </span>
+            </div>
           </div>
 
-          <h2 className="text-2xl font-semibold tracking-tight text-[#001E3C] md:text-3xl lg:text-4xl">
+          <h2 className={`text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-[#001E3C] transition-all duration-700 delay-100 ${
+            hasAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
             Latest{" "}
             <span className="text-[#123B7A]">
               Videos
             </span>
           </h2>
 
-          <div className="mx-auto mt-2 h-0.5 w-12 rounded-full bg-gradient-to-r from-[#001E3C] to-[#123B7A]" />
+          <div className={`mx-auto mt-2 h-0.5 w-12 rounded-full bg-gradient-to-r from-[#001E3C] to-[#123B7A] transition-all duration-700 delay-200 ${
+            hasAnimated ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
+          }`} />
 
-          <p className="mx-auto mt-3 max-w-2xl text-sm text-[#0B2C66]/70">
+          <p className={`mx-auto mt-3 max-w-2xl text-sm text-[#0B2C66]/70 transition-all duration-700 delay-300 ${
+            hasAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
             Watch expert advice, patient success stories and treatment awareness videos from Dr Rekha Saroha.
           </p>
         </div>
@@ -220,7 +555,7 @@ const [allVideos, setAllVideos] = useState<Video[]>(
           </div>
         )}
 
-        {/* VIDEO GRID */}
+        {/* VIDEO GRID with animations */}
         {!loading && (
           <>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -228,70 +563,79 @@ const [allVideos, setAllVideos] = useState<Video[]>(
                 <div
                   key={index}
                   onClick={() => openVideo(video)}
-                  className="group overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
+                  className={`group overflow-hidden rounded-xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer ${
+                    visibleVideos.includes(index) 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-16'
+                  }`}
+                  style={{ 
+                    transitionDelay: `${visibleVideos.includes(index) ? 0 : 0}ms`,
+                    transitionProperty: 'all',
+                    transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                  }}
                 >
                   <div className="relative overflow-hidden">
                     <img
                       src={video.thumbnail}
                       alt={video.title}
                       loading="lazy"
-                      className="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
+                      className="h-52 w-full object-cover transition duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-black/30 transition duration-300 group-hover:bg-black/40" />
+                    <div className="absolute inset-0 bg-black/30 transition duration-500 group-hover:bg-black/50" />
                     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                       <div className="flex h-14 w-14 items-center justify-center rounded-full bg-red-600/90 shadow-lg transition-all duration-300 hover:scale-110 hover:bg-red-600">
                         <Play className="h-6 w-6 text-white ml-0.5" />
                       </div>
                     </div>
-                    <div className="absolute bottom-3 right-3 rounded-md bg-black/70 px-2 py-1 text-xs text-white">
+                    <div className="absolute bottom-3 right-3 rounded-md bg-black/70 px-2 py-1 text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <Eye className="inline h-3 w-3 mr-1" />
                       Click to Play
                     </div>
                     
+                    {/* Video Number Badge */}
+                    <div className="absolute top-3 left-3 bg-gradient-to-r from-[#123B7A] to-[#0B2C66] rounded-lg px-2 py-1 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-full group-hover:translate-x-0">
+                      <span className="text-[10px] font-bold text-white">0{index + 1}</span>
+                    </div>
                   </div>
-                 
                 </div>
               ))}
             </div>
 
-            <div className="mt-6 text-center">
-              <p className="text-sm text-gray-500">
-                Showing {videos.length} of {allVideos.length} videos
-              </p>
+            {/* Video Count Indicator */}
+            <div className={`mt-6 text-center transition-all duration-700 delay-500 ${
+              hasAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
+              <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2">
+                <div className="flex gap-1">
+                  <div className="h-1.5 w-4 rounded-full bg-red-600"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-gray-300"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-gray-300"></div>
+                </div>
+                <span className="text-xs text-gray-500">
+                  Showing {videos.length} of {allVideos.length} videos
+                </span>
+              </div>
             </div>
 
             {hasMore && (
               <div className="mt-6 text-center">
-                {/* <button
-                  onClick={loadMore}
-                  disabled={loadingMore}
-                  className="group inline-flex items-center gap-2 rounded-full border-2 border-[#123B7A] bg-transparent px-8 py-2.5 text-sm font-semibold text-[#123B7A] transition-all duration-300 hover:bg-[#123B7A] hover:text-white hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {loadingMore ? (
-                    <>
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                      Loading...
-                    </>
-                  ) : (
-                    <>
-                      Load More Videos
-                      <Sparkles className="h-3.5 w-3.5 opacity-0 transition group-hover:opacity-100" />
-                    </>
-                  )}
-                </button> */}
+                {/* Load more button (commented out but ready) */}
               </div>
             )}
 
+            {/* Subscribe Button */}
             {allVideos.length > 0 && (
-              <div className="mt-10 text-center">
+              <div className={`mt-10 text-center transition-all duration-700 delay-700 ${
+                hasAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}>
                 <a
                   href="https://www.youtube.com/@Drrekhasaroha"
                   target="_blank"
                   className="group inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-red-700"
                 >
-                  <FaYoutube className="h-4 w-4" />
+                  <FaYoutube className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
                   Subscribe to Our Channel
-                  <Sparkles className="h-3.5 w-3.5 opacity-0 transition group-hover:opacity-100" />
+                  <Sparkles className="h-3.5 w-3.5 opacity-0 transition duration-300 group-hover:opacity-100 group-hover:rotate-12" />
                 </a>
               </div>
             )}
@@ -323,8 +667,7 @@ const [allVideos, setAllVideos] = useState<Video[]>(
             )}
 
             {/* Modal Header */}
-            <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 bg-gradient-to-b from-black/60 to-transparent">
-              
+            <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-end p-4 bg-gradient-to-b from-black/60 to-transparent">
               <div className="flex items-center gap-2">
                 <button
                   onClick={toggleFullscreen}
@@ -341,7 +684,7 @@ const [allVideos, setAllVideos] = useState<Video[]>(
               </div>
             </div>
 
-            {/* Video Player - Optimized with lazy loading */}
+            {/* Video Player */}
             <div className={`relative ${isFullscreen ? "h-screen" : "aspect-video"}`}>
               <iframe
                 src={`https://www.youtube-nocookie.com/embed/${getVideoId(selectedVideo.guid)}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1&enablejsapi=1`}
@@ -356,12 +699,11 @@ const [allVideos, setAllVideos] = useState<Video[]>(
 
             {/* Modal Footer */}
             <div className="absolute bottom-0 left-0 right-0 z-20 p-4 bg-gradient-to-t from-black/60 to-transparent">
-              <div className="flex items-center justify-between">
-               
+              <div className="flex items-center justify-end">
                 <a
                   href={`https://www.youtube.com/watch?v=${getVideoId(selectedVideo.guid)}`}
                   target="_blank"
-                  className="text-xs text-white hover:text-white transition"
+                  className="text-xs text-white/80 hover:text-white transition"
                   rel="noopener noreferrer"
                 >
                   Watch on YouTube ↗
@@ -371,6 +713,19 @@ const [allVideos, setAllVideos] = useState<Video[]>(
           </div>
         </div>
       )}
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 }
