@@ -28,6 +28,7 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
+  { name: "Hair Loss", href: "/treatments/hair-loss" },
   { name: "Gallery", href: "/gallery" },
   { name: "Contact", href: "/contact" },
 ];
@@ -359,10 +360,13 @@ export default function Navbar() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className="group relative block transform overflow-hidden rounded-lg px-4 py-3 text-base font-semibold text-[#001E3C] transition-all duration-300 hover:bg-gradient-to-r hover:from-[#6EDC8C]/10 hover:to-transparent hover:pl-6"
-                  style={{
-                    animationDelay: `${idx * 50}ms`,
-                    animation: open ? "slideIn 0.3s ease-out forwards" : "none",
-                  }}
+               style={{
+  animationName: open ? "slideIn" : "none",
+  animationDuration: "0.3s",
+  animationTimingFunction: "ease-out",
+  animationFillMode: "forwards",
+  animationDelay: `${idx * 50}ms`,
+}}
                 >
                   {item.name}
                   <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" size={16} />
