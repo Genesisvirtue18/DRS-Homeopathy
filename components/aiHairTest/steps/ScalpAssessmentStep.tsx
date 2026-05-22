@@ -47,6 +47,18 @@ const handleSubmit = async () => {
 
   try {
 
+    // FINAL PAYLOAD
+    const payload = {
+      ...formData,
+      scalpImage: uploadedImage,
+    };
+
+    // DEBUG FRONTEND DATA
+    console.log("=================================");
+    console.log("FRONTEND PAYLOAD");
+    console.log(payload);
+    console.log("=================================");
+
     // CALL AI API
     const response = await fetch(
       "/api/ai-hair-analysis",
@@ -57,16 +69,31 @@ const handleSubmit = async () => {
           "Content-Type": "application/json",
         },
 
-        body: JSON.stringify({
-          ...formData,
-          scalpImage: uploadedImage,
-        }),
+        body: JSON.stringify(payload),
       }
     );
 
+    // DEBUG RESPONSE STATUS
+    console.log("API STATUS:", response.status);
+
     const result = await response.json();
 
+    // DEBUG AI RESULT
+    console.log("=================================");
+    console.log("AI RESULT");
     console.log(result);
+    console.log("=================================");
+
+    // CHECK API ERROR
+    if (!response.ok) {
+
+      console.log("API ERROR:");
+      console.log(result);
+
+      alert(result.error || "AI analysis failed");
+
+      return;
+    }
 
     // SAVE RESULT
     localStorage.setItem(
@@ -79,7 +106,10 @@ const handleSubmit = async () => {
 
   } catch (error) {
 
+    console.log("=================================");
+    console.log("FRONTEND ERROR");
     console.log(error);
+    console.log("=================================");
 
     alert("AI analysis failed");
   }

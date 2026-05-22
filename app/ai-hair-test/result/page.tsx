@@ -349,13 +349,23 @@ export default function AIHairTestResultPage() {
                 {/* IMAGE */}
                 <div className="hidden sm:block">
                   <div className="rounded-lg border border-gray-200 bg-gray-50 p-1.5">
-                    <Image
+                    {/* <Image
                       src="/ai-hair-test/1.jpg"
                       alt="Hair Stage"
                       width={70}
                       height={70}
                       className="rounded-md object-cover"
-                    />
+                    /> */}
+                    <Image
+  src={
+    report.hairFallImage ||
+    "/ai-hair-test/1.jpg"
+  }
+  alt="Hair Stage"
+  width={90}
+  height={90}
+  className="h-auto w-auto rounded-md object-cover"
+/>
                   </div>
                 </div>
               </div>
