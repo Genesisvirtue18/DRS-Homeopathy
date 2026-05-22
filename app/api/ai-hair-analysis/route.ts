@@ -415,6 +415,139 @@ ${JSON.stringify(body, null, 2)}
     try {
 
       parsed = JSON.parse(cleaned);
+      // =========================================
+// ROOT CAUSES
+// =========================================
+
+const rootCauses = [];
+
+// FAMILY HISTORY
+if (body.familyHistory !== "None") {
+  rootCauses.push(
+    "Genetic hair loss"
+  );
+}
+
+// STRESS
+if (
+  body.stress !== "Low" &&
+  body.stress !== "None"
+) {
+  rootCauses.push(
+    "Stress and mental fatigue"
+  );
+}
+
+// DANDRUFF
+if (body.dandruff !== "No") {
+  rootCauses.push(
+    "Scalp condition and dandruff"
+  );
+}
+
+// SLEEP
+if (
+  body.sleep !==
+  "Very peacefully for 6-8 hours"
+) {
+  rootCauses.push(
+    "Poor sleep quality"
+  );
+}
+
+// CONSTIPATION
+if (
+  body.constipation !==
+  "No / Once in a while"
+) {
+  rootCauses.push(
+    "Digestive imbalance"
+  );
+}
+
+// GAS
+if (body.gas !== "No") {
+  rootCauses.push(
+    "Gut health issues"
+  );
+}
+
+// FALLBACK
+if (rootCauses.length === 0) {
+
+  rootCauses.push(
+    "Lifestyle factors"
+  );
+
+  rootCauses.push(
+    "Hair follicle sensitivity"
+  );
+
+  rootCauses.push(
+    "Nutritional imbalance"
+  );
+}
+
+// =========================================
+// RECOMMENDATIONS
+// =========================================
+
+const recommendations = [];
+
+// STRESS
+if (
+  body.stress !== "Low" &&
+  body.stress !== "None"
+) {
+  recommendations.push(
+    "Practice stress management through meditation and exercise"
+  );
+}
+
+// DANDRUFF
+if (body.dandruff !== "No") {
+  recommendations.push(
+    "Use anti-dandruff scalp care and maintain scalp hygiene"
+  );
+}
+
+// SLEEP
+if (
+  body.sleep !==
+  "Very peacefully for 6-8 hours"
+) {
+  recommendations.push(
+    "Maintain a proper sleep schedule"
+  );
+}
+
+// DIGESTION
+if (
+  body.constipation !==
+    "No / Once in a while" ||
+  body.gas !== "No"
+) {
+  recommendations.push(
+    "Improve digestion with fiber-rich foods and hydration"
+  );
+}
+
+// GENERAL
+recommendations.push(
+  "Maintain a healthy protein-rich diet"
+);
+
+recommendations.push(
+  "Avoid excessive heat and harsh hair products"
+);
+
+// =========================================
+// FINAL DATA
+// =========================================
+
+parsed.rootCauses = rootCauses;
+
+parsed.recommendations = recommendations;
 
     } catch (err) {
 
