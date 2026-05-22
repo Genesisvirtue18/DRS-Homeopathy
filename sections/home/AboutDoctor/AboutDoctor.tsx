@@ -348,7 +348,8 @@ export default function AboutDoctor() {
               {/* Action Buttons Row */}
               <div className="flex flex-row flex-wrap gap-3">
                 <Link
-                  href="https://6uyedz-fv.myshopify.com/pages/quiz"
+               //   href="https://6uyedz-fv.myshopify.com/pages/quiz"
+                 href="/ai-hair-test"
                   target="_blank"
                   className="group inline-flex items-center justify-center gap-2 rounded-full border border-[#0E2A5A] bg-white/80 backdrop-blur-sm px-4 py-2.5 text-sm font-semibold text-[#0E2A5A] transition-all duration-300 hover:bg-[#0E2A5A] hover:text-white hover:scale-105 shadow-sm"
                 >
