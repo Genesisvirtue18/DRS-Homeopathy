@@ -171,7 +171,7 @@ export default function HowItWorks() {
         <div className="mb-8 text-center md:mb-12">
           <div className="mb-2 inline-flex items-center rounded-full bg-[#6EDC8C]/15 px-3 py-1">
             <span className="text-[12px] md:text-[13px] font-semibold uppercase tracking-wider text-[#0E2A5A]">
-              Simple Process
+             Get expert care in three simple steps
             </span>
           </div>
 
@@ -182,9 +182,9 @@ export default function HowItWorks() {
             </span>
           </h2>
 
-          <p className="mx-auto mt-2 text-[14px] md:text-[16px] leading-[1.6] text-gray-600 max-w-md">
+          {/* <p className="mx-auto mt-2 text-[14px] md:text-[16px] leading-[1.6] text-gray-600 max-w-md">
             Get expert care in three simple steps
-          </p>
+          </p> */}
         </div>
 
         {/* INLINE STEPS - Horizontal scroll on mobile, grid on desktop */}

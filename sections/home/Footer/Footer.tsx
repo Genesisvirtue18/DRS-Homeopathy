@@ -42,18 +42,30 @@ export default function Footer() {
           {/* COLUMN 1 - Logo & Social */}
           <div className="lg:col-span-4">
             <div className="flex flex-col md:flex-row lg:flex-col gap-6">
-              <div>
-                <Image
-                  src="/images/footer-logo.png"
-                  alt="DRS Homeopathy"
-                  width={200}
-                  height={70}
-                  className="h-auto bg-white w-48 rounded-lg p-2"
-                />
-                <p className="mt-4 text-sm text-gray-300 leading-relaxed max-w-md">
-                  We are having 16 years of experience in field of homoeopathy. We provide u all the treatment both way online or offline.
-                </p>
-              </div>
+           <div>
+  <Link href="/" className="group bg-white relative flex items-center">
+    <div className="absolute -inset-2 rounded-2xl bg-gradient-to-r from-[#6EDC8C]/20 to-transparent opacity-0 blur-xl group-hover:opacity-100 transition duration-500"></div>
+    <div className="relative">
+      <Image
+        src="/images/footer-logo.png"
+        alt="DRS Homeopathy"
+        width={100}
+        height={70}
+        className="h-auto w-auto  rounded-lg p-2 transition-all duration-300 group-hover:scale-105"
+      />
+    </div>
+    {/* Brand Tagline */}
+    <div className="hidden ml-3 pl-3 border-l border-gray-600 lg:block">
+      <p className="text-xs text-gray-500 leading-tight">Trusted Homeopathy</p>
+      <p className="text-xs font-semibold text-[#001E3C]">Since 2010</p>
+    </div>
+  </Link>
+  
+  {/* Description text - Not clickable */}
+  <p className="mt-4 text-sm text-gray-300 leading-relaxed max-w-md">
+    We are having 16 years of experience in field of homoeopathy. We provide u all the treatment both way online or offline.
+  </p>
+</div>
               
               {/* Social Icons */}
               <div className="flex gap-3">

@@ -138,11 +138,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-500 ${
-        scrolled
+      className={`fixed top-0 z-50 w-full transition-all duration-500 ${scrolled
           ? "bg-white/98 shadow-2xl backdrop-blur-md"
           : "bg-white shadow-lg"
-      }`}
+        }`}
     >
       {/* RUNNING MARQUEE - Continuous Loop */}
       <div className="relative overflow-hidden bg-[#0E2A5A] py-1.5">
@@ -164,7 +163,7 @@ export default function Navbar() {
               <Phone className="h-3 w-3" />
               Call Now : +91 9911293060
             </a>
-            
+
             {/* Duplicate items for seamless looping */}
             <span className="flex items-center gap-2">
               <Bell className="h-3.5 w-3.5 text-white" />
@@ -184,7 +183,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      
+
       {/* COMPACT TOP BAR */}
       <div className="hidden bg-gradient-to-r from-[#001E3C] via-[#0B2C66] to-[#001E3C] lg:block relative overflow-hidden">
         <div
@@ -233,15 +232,15 @@ export default function Navbar() {
             <div className="relative group">
               <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-[#6EDC8C] to-[#4CAF50] opacity-60 blur-sm group-hover:opacity-100 transition duration-200"></div>
               <div className="relative rounded-full bg-gradient-to-r from-[#6EDC8C] to-[#4CAF50] px-4 py-1">
-               <a
-  href="https://drs-homeopathy.vercel.app/ai-hair-test"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="flex items-center gap-1.5 text-xs font-bold text-[#001E3C]"
->
-  <Sparkles size={12} className="animate-pulse" />
-  Take a Free Hair Test
-</a>
+                <a
+                  href="https://drs-homeopathy.vercel.app/ai-hair-test"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-xs font-bold text-[#001E3C]"
+                >
+                  <Sparkles size={12} className="animate-pulse" />
+                  Take a Free Hair Test 
+                </a>
               </div>
             </div>
           </div>
@@ -250,9 +249,8 @@ export default function Navbar() {
 
       {/* COMPACT MAIN NAVBAR */}
       <nav
-        className={`mx-auto flex h-15 max-w-7xl items-center justify-between px-6 transition-all duration-300 ${
-          scrolled ? "py-1" : "py-2"
-        }`}
+        className={`mx-auto flex h-15 max-w-7xl items-center justify-between px-6 transition-all duration-300 ${scrolled ? "py-1" : "py-2"
+          }`}
       >
         {/* LOGO with animation */}
         <Link href="/" className="group relative flex items-center">
@@ -316,23 +314,22 @@ export default function Navbar() {
 
         {/* MOBILE BUTTON */}
         <button
-  onClick={() => setOpen(true)}
-  className="relative z-[1001] lg:hidden"
-  aria-label="Open menu"
->
-  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#001E3C] to-[#1E3A6E] shadow-lg transition-all duration-300 hover:scale-110">
-    <Menu className="h-4 w-4 text-white" />
-  </div>
-</button>
+          onClick={() => setOpen(true)}
+          className="relative z-[1001] lg:hidden"
+          aria-label="Open menu"
+        >
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#001E3C] to-[#1E3A6E] shadow-lg transition-all duration-300 hover:scale-110">
+            <Menu className="h-4 w-4 text-white" />
+          </div>
+        </button>
       </nav>
 
       {/* MOBILE MENU */}
       <div
-        className={`fixed left-0 top-0 z-[999] h-screen w-full bg-white transition-all duration-300 lg:hidden ${
-          open
+        className={`fixed left-0 top-0 z-[999] h-screen w-full bg-white transition-all duration-300 lg:hidden ${open
             ? "translate-x-0 opacity-100"
             : "pointer-events-none translate-x-full opacity-0"
-        }`}
+          }`}
       >
         <div className="flex h-full flex-col overflow-y-auto">
           <div className="flex mt-4 items-center justify-between border-b border-gray-100 px-6 py-4">
@@ -365,13 +362,13 @@ export default function Navbar() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className="group relative block transform overflow-hidden rounded-lg px-4 py-3 text-base font-semibold text-[#001E3C] transition-all duration-300 hover:bg-gradient-to-r hover:from-[#6EDC8C]/10 hover:to-transparent hover:pl-6"
-               style={{
-  animationName: open ? "slideIn" : "none",
-  animationDuration: "0.3s",
-  animationTimingFunction: "ease-out",
-  animationFillMode: "forwards",
-  animationDelay: `${idx * 50}ms`,
-}}
+                  style={{
+                    animationName: open ? "slideIn" : "none",
+                    animationDuration: "0.3s",
+                    animationTimingFunction: "ease-out",
+                    animationFillMode: "forwards",
+                    animationDelay: `${idx * 50}ms`,
+                  }}
                 >
                   {item.name}
                   <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" size={16} />
