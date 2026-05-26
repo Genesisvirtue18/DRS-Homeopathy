@@ -81,7 +81,7 @@ export default function AboutPage() {
             <div className="space-y-3">
               <div className="relative rounded-xl overflow-hidden shadow-lg">
                 <Image
-                  src="/images/about-img.jpg"
+                  src="/images/drrekha.jpeg"
                   alt="Dr Rekha Saroha"
                   width={600}
                   height={450}

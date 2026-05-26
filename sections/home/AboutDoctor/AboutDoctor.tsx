@@ -320,7 +320,7 @@ export default function AboutDoctor() {
             <div className="relative h-full w-full">
               <div className="h-full overflow-hidden rounded-md">
                 <Image
-                  src="/images/about-img.jpg"
+                  src="/images/drrekha.jpeg"
                   alt="Dr. Rekha Saroha"
                   width={900}
                   height={900}

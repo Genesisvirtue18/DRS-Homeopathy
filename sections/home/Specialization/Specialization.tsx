@@ -258,7 +258,7 @@
 //           >
 //             <ChevronLeft className="h-5 w-5" />
 //           </button>
-          
+
 //           <button
 //             onClick={scrollRight}
 //             className="absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 shadow-lg text-[#0E2A5A] opacity-0 transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white lg:flex"
@@ -291,7 +291,7 @@
 //                 background: #4CAF50;
 //               }
 //             `}</style>
-            
+
 //             {specializations.map((item) => (
 //               <div
 //                 key={item.id}
@@ -311,7 +311,7 @@
 //                     </div>
 //                   </div>
 //                 </div>
-                
+
 //                 {/* Content */}
 //                 <div className="p-4 flex flex-col flex-1">
 //                   <h3 className="text-base font-bold text-[#0E2A5A] mb-2">
@@ -320,10 +320,10 @@
 //                   <p className="text-xs text-gray-600 leading-relaxed">
 //                     {item.description}
 //                   </p>
-                  
+
 //                   {/* Spacer to push buttons to bottom */}
 //                   <div className="flex-1"></div>
-                  
+
 //                   {/* Contact Section - All buttons at bottom on same line */}
 //                   <div className="mt-4 flex items-center gap-2 flex-nowrap w-full">
 //                     <Link
@@ -333,7 +333,7 @@
 //                       <Phone className="h-3 w-3 flex-shrink-0" />
 //                       <span>Call Now</span>
 //                     </Link>
-                    
+
 //                     <Link
 //                       href={item.facebook}
 //                       target="_blank"
@@ -341,7 +341,7 @@
 //                     >
 //                       <FaYoutube  className="h-3 w-3 text-white" />
 //                     </Link>
-                    
+
 //                     <Link
 //                       href={item.instagram}
 //                       target="_blank"
@@ -612,17 +612,15 @@ export default function Specializations() {
         {/* Header with smooth scroll animations */}
         <div className="mb-8 text-center">
           <div
-            className={`inline-flex items-center gap-2 rounded-full bg-[#6EDC8C]/10 px-4 py-1.5 mb-3 transition-all duration-700 ${
-              hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
+            className={`inline-flex items-center gap-2 rounded-full bg-[#6EDC8C]/10 px-4 py-1.5 mb-3 transition-all duration-700 ${hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
           >
             <span className="text-xs font-semibold text-[#0E2A5A]">हमारी विशेषज्ञताएं</span>
           </div>
 
           <div
-            className={`flex items-center justify-center gap-3 transition-all duration-700 delay-100 ${
-              hasAnimated ? "opacity-100 scale-100" : "opacity-0 scale-95"
-            }`}
+            className={`flex items-center justify-center gap-3 transition-all duration-700 delay-100 ${hasAnimated ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              }`}
           >
             <Image
               src="/images/capsule.png"
@@ -631,7 +629,10 @@ export default function Specializations() {
               height={42}
               className="animate-[spin_8s_linear_infinite]"
             />
-            <h2 className="text-3xl font-semibold text-[#0E2A5A] md:text-4xl">
+            {/* <h2 className="text-3xl font-semibold text-[#0E2A5A] md:text-4xl">
+              Our <span className="text-[#6EDC8C]">Specializations</span>
+            </h2> */}
+            <h2 className="text-[28px] font-semibold leading-[1.2] text-[#0E2A5A] md:text-[42px] md:font-bold">
               Our <span className="text-[#6EDC8C]">Specializations</span>
             </h2>
             <Image
@@ -644,9 +645,8 @@ export default function Specializations() {
           </div>
 
           <div
-            className={`mt-3 flex items-center justify-center gap-2 transition-all duration-700 delay-200 ${
-              hasAnimated ? "opacity-100" : "opacity-0"
-            }`}
+            className={`mt-3 flex items-center justify-center gap-2 transition-all duration-700 delay-200 ${hasAnimated ? "opacity-100" : "opacity-0"
+              }`}
           >
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#6EDC8C]"></div>
             <div className="h-2 w-2 rounded-full bg-[#6EDC8C] animate-pulse"></div>
@@ -654,9 +654,8 @@ export default function Specializations() {
           </div>
 
           <p
-            className={`mt-3 text-sm text-gray-500 transition-all duration-700 delay-300 ${
-              hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
+            className={`mt-3 text-sm text-gray-500 transition-all duration-700 delay-300 ${hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
           >
             होम्योपैथिक द्वारा विभिन्न रोगों का सफल इलाज
           </p>
@@ -667,9 +666,8 @@ export default function Specializations() {
           {/* Scroll Buttons */}
           <button
             onClick={scrollLeft}
-            className={`absolute left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 shadow-lg text-[#0E2A5A] transition-all duration-500 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white lg:flex ${
-              hasAnimated ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 shadow-lg text-[#0E2A5A] transition-all duration-500 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white lg:flex ${hasAnimated ? "opacity-100" : "opacity-0"
+              }`}
             style={{ transitionDelay: "400ms" }}
           >
             <ChevronLeft className="h-5 w-5" />
@@ -677,9 +675,8 @@ export default function Specializations() {
 
           <button
             onClick={scrollRight}
-            className={`absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 shadow-lg text-[#0E2A5A] transition-all duration-500 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white lg:flex ${
-              hasAnimated ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 shadow-lg text-[#0E2A5A] transition-all duration-500 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white lg:flex ${hasAnimated ? "opacity-100" : "opacity-0"
+              }`}
             style={{ transitionDelay: "400ms" }}
           >
             <ChevronRight className="h-5 w-5" />
@@ -754,9 +751,8 @@ export default function Specializations() {
             {specializations.map((item) => (
               <div
                 key={item.id}
-                className={`card-slide w-[320px] flex-shrink-0 bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col ${
-                  hasAnimated ? "animate" : ""
-                }`}
+                className={`card-slide w-[320px] flex-shrink-0 bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col ${hasAnimated ? "animate" : ""
+                  }`}
               >
                 {/* Image */}
                 <div className="relative h-44 w-full overflow-hidden">
@@ -820,9 +816,8 @@ export default function Specializations() {
 
         {/* Scroll Hint */}
         <div
-          className={`mt-6 text-center transition-all duration-700 delay-700 ${
-            hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`mt-6 text-center transition-all duration-700 delay-700 ${hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
         >
           <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5 transition-all duration-300 hover:bg-gray-200 cursor-pointer group/hint">
             <div className="flex gap-1">
