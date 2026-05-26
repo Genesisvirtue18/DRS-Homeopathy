@@ -16,7 +16,7 @@ export default function FloatingButtons() {
       id: "shop",
       icon: ShoppingBag,
       label: "Shop Now",
-      href: "https://shop.vagabornglobal.com/",
+      href: "https://shop.vagabornglobal.com/AllProducts",
       hoverClass: "group-hover:scale-110",
     },
     {

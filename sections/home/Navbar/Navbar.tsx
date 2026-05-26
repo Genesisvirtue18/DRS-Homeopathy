@@ -233,10 +233,15 @@ export default function Navbar() {
             <div className="relative group">
               <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-[#6EDC8C] to-[#4CAF50] opacity-60 blur-sm group-hover:opacity-100 transition duration-200"></div>
               <div className="relative rounded-full bg-gradient-to-r from-[#6EDC8C] to-[#4CAF50] px-4 py-1">
-                <p className="flex items-center gap-1.5 text-xs font-bold text-[#001E3C]">
-                  <Sparkles size={12} className="animate-pulse" />
-                  90% Success Rate
-                </p>
+               <a
+  href="https://drs-homeopathy.vercel.app/ai-hair-test"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center gap-1.5 text-xs font-bold text-[#001E3C]"
+>
+  <Sparkles size={12} className="animate-pulse" />
+  Take a Free Hair Test
+</a>
               </div>
             </div>
           </div>

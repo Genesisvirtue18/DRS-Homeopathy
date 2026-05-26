@@ -27,21 +27,21 @@ const slides = [
     // ctaLink: "/contact",
     showContent: true,
   },
-  {
-    id: 3,
-    image: "/slider/slide4.jpg",
-    showContent: false,
-  },
-  {
-    id: 4,
-    image: "/slider/slide5.jpg",
-    showContent: false,
-  },
-  {
-    id: 5,
-    image: "/slider/slide6.jpg",
-    showContent: false,
-  },
+  // {
+  //   id: 3,
+  //   image: "/slider/slide4.jpg",
+  //   showContent: false,
+  // },
+  // {
+  //   id: 4,
+  //   image: "/slider/slide5.jpg",
+  //   showContent: false,
+  // },
+  // {
+  //   id: 5,
+  //   image: "/slider/slide6.jpg",
+  //   showContent: false,
+  // },
 ];
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
