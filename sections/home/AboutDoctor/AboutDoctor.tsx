@@ -358,7 +358,7 @@ export default function AboutDoctor() {
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
-                  href="https://6uyedz-fv.myshopify.com/collections/all"
+                  href="https://shop.vagabornglobal.com/"
                   target="_blank"
                   className="group inline-flex items-center justify-center gap-2 rounded-full border border-[#0E2A5A] bg-white/80 backdrop-blur-sm px-4 py-2.5 text-sm font-semibold text-[#0E2A5A] transition-all duration-300 hover:bg-[#0E2A5A] hover:text-white hover:scale-105 shadow-sm"
                 >
