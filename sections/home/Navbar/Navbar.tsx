@@ -139,8 +139,8 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-500 ${scrolled
-          ? "bg-white/98 shadow-2xl backdrop-blur-md"
-          : "bg-white shadow-lg"
+        ? "bg-white/98 shadow-2xl backdrop-blur-md"
+        : "bg-white shadow-lg"
         }`}
     >
       {/* RUNNING MARQUEE - Continuous Loop */}
@@ -239,7 +239,7 @@ export default function Navbar() {
                   className="flex items-center gap-1.5 text-xs font-bold text-[#001E3C]"
                 >
                   <Sparkles size={12} className="animate-pulse" />
-                  Take a Free Hair Test 
+                  Take a Free Hair Test
                 </a>
               </div>
             </div>
@@ -313,36 +313,53 @@ export default function Navbar() {
         </div>
 
         {/* MOBILE BUTTON */}
-        <button
-          onClick={() => setOpen(true)}
-          className="relative z-[1001] lg:hidden"
-          aria-label="Open menu"
-        >
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#001E3C] to-[#1E3A6E] shadow-lg transition-all duration-300 hover:scale-110">
-            <Menu className="h-4 w-4 text-white" />
-          </div>
-        </button>
+        {/* MOBILE BUTTON */}
+        {!open && (
+          <button
+            onClick={() => setOpen(true)}
+            className="relative z-[1001] lg:hidden"
+            aria-label="Open menu"
+          >
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#001E3C] to-[#1E3A6E] shadow-lg transition-all duration-300 hover:scale-110">
+              <Menu className="h-4 w-4 text-white" />
+            </div>
+          </button>
+        )}
       </nav>
 
       {/* MOBILE MENU */}
       <div
         className={`fixed left-0 top-0 z-[999] h-screen w-full bg-white transition-all duration-300 lg:hidden ${open
-            ? "translate-x-0 opacity-100"
-            : "pointer-events-none translate-x-full opacity-0"
+          ? "translate-x-0 opacity-100"
+          : "pointer-events-none translate-x-full opacity-0"
           }`}
       >
         <div className="flex h-full flex-col overflow-y-auto">
-          <div className="flex mt-4 items-center justify-between border-b border-gray-100 px-6 py-4">
-            <Link href="/" onClick={() => setOpen(false)}>
-              <Image
-                src="/images/logo.png"
-                alt="DRS Homeopathy"
-                width={150}
-                height={50}
-                className="h-auto w-auto"
-                priority
-              />
-            </Link>
+          <div className="mt-3 flex items-center justify-between border-b border-gray-100 px-4 py-3">
+            <Link
+  href="/"
+  onClick={() => setOpen(false)}
+  className="flex items-center rounded-lg bg-white px-2 py-1 "
+>
+  <Image
+    src="/images/logo.png"
+    alt="DRS Homeopathy"
+    width={120}
+    height={40}
+    className="h-auto w-[95px]"
+    priority
+  />
+
+  <div className="ml-2 border-l border-gray-300 pl-2">
+    <p className="text-[8px] leading-tight text-gray-500">
+      Trusted Homeopathy
+    </p>
+
+    <p className="text-[9px] font-bold leading-tight text-[#001E3C]">
+      Since 2010
+    </p>
+  </div>
+</Link>
 
             <button
               onClick={() => setOpen(false)}

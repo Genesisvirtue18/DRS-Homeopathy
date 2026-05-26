@@ -30,43 +30,51 @@ const quickLinks = [
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#001E3C] text-white">
-      
+
       {/* Background Glow */}
       <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-[#123B7A]/20 blur-3xl" />
       <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-[#2F5DA8]/10 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        
+
         <div className="grid gap-8 border-b border-white/10 pb-10 md:grid-cols-2 lg:grid-cols-12">
-          
+
           {/* COLUMN 1 - Logo & Social */}
           <div className="lg:col-span-4">
             <div className="flex flex-col md:flex-row lg:flex-col gap-6">
-           <div>
-  <Link href="/" className="group bg-white relative flex items-center">
-    <div className="absolute -inset-2 rounded-2xl bg-gradient-to-r from-[#6EDC8C]/20 to-transparent opacity-0 blur-xl group-hover:opacity-100 transition duration-500"></div>
-    <div className="relative">
-      <Image
-        src="/images/footer-logo.png"
-        alt="DRS Homeopathy"
-        width={100}
-        height={70}
-        className="h-auto w-auto  rounded-lg p-2 transition-all duration-300 group-hover:scale-105"
-      />
-    </div>
-    {/* Brand Tagline */}
-    <div className="hidden ml-3 pl-3 border-l border-gray-600 lg:block">
-      <p className="text-xs text-gray-500 leading-tight">Trusted Homeopathy</p>
-      <p className="text-xs font-semibold text-[#001E3C]">Since 2010</p>
-    </div>
-  </Link>
-  
-  {/* Description text - Not clickable */}
-  <p className="mt-4 text-sm text-gray-300 leading-relaxed max-w-md">
-    We are having 16 years of experience in field of homoeopathy. We provide u all the treatment both way online or offline.
-  </p>
-</div>
-              
+              <div>
+             <Link
+  href="/"
+  className="group relative inline-flex items-center rounded-md bg-white px-2 py-1 shadow-sm"
+>
+  {/* Logo */}
+  <div className="relative flex items-center">
+    <Image
+      src="/images/footer-logo.png"
+      alt="DRS Homeopathy"
+      width={140}
+      height={45}
+      className="h-auto w-[110px] md:w-[140px] transition-all duration-300 group-hover:scale-105"
+    />
+  </div>
+
+  {/* Tagline */}
+  <div className="ml-2 border-l border-gray-300 pl-2">
+    <p className="text-[8px] leading-tight text-gray-500 md:text-[10px]">
+      Trusted Homeopathy
+    </p>
+
+    <p className="text-[9px] font-bold leading-tight text-[#001E3C] md:text-[11px]">
+      Since 2010
+    </p>
+  </div>
+</Link>
+                {/* Description text - Not clickable */}
+                <p className="mt-4 text-sm text-gray-300 leading-relaxed max-w-md">
+                  We are having 16 years of experience in field of homoeopathy. We provide u all the treatment both way online or offline.
+                </p>
+              </div>
+
               {/* Social Icons */}
               <div className="flex gap-3">
                 <Link
@@ -123,7 +131,7 @@ export default function Footer() {
           <div className="lg:col-span-5">
             <h3 className="text-xl font-semibold">Our Contacts</h3>
             <div className="mt-2 h-0.5 w-12 rounded-full bg-[#123B7A]" />
-            
+
             <ul className="mt-5 space-y-5">
               {/* Address 1 */}
               <li className="flex gap-3 group">
@@ -198,10 +206,10 @@ export default function Footer() {
         {/* BOTTOM BAR - Clean & Impressive */}
         <div className="flex flex-col items-center justify-between gap-4 pt-4">
           <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          
+
           <div className="flex flex-col items-center justify-between gap-3 text-center text-xs text-gray-400 md:flex-row md:w-full">
             <p>© 2026 DRS Homeopathy. All Rights Reserved.</p>
-            
+
             <div className="flex items-center gap-2">
               <span>Developed By</span>
               <Link
