@@ -138,12 +138,12 @@ export default function MostTreatments() {
           <div className="mb-1.5 inline-flex items-center gap-1 rounded-full bg-[#6EDC8C]/15 px-2.5 py-0.5">
             <Sparkles className="h-2.5 w-2.5 text-[#0E2A5A]" />
             <span className="text-[11px] font-semibold uppercase tracking-wider text-[#0E2A5A]">
-              Most Treatments
+             We Treat
             </span>
           </div>
 
           <h2 className="text-xl font-semibold tracking-tight text-[#0E2A5A] md:text-2xl lg:text-3xl">
-            Most <span className="text-[#6EDC8C]">Treatments</span>
+            We <span className="text-[#6EDC8C]">Treat</span>
           </h2>
 
           <div className="mx-auto mt-1.5 h-0.5 w-10 rounded-full bg-gradient-to-r from-[#0E2A5A] to-[#6EDC8C]" />

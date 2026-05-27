@@ -1,8 +1,9 @@
+
 // "use client";
 
 // import Image from "next/image";
 // import Link from "next/link";
-// import { useRef } from "react";
+// import { useRef, useEffect, useState } from "react";
 // import { Phone, ChevronLeft, ChevronRight } from "lucide-react";
 // import {
 //   FaYoutube,
@@ -194,59 +195,97 @@
 
 // export default function Specializations() {
 //   const scrollContainerRef = useRef<HTMLDivElement>(null);
+//   const sectionRef = useRef(null);
+//   const [hasAnimated, setHasAnimated] = useState(false);
+
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       (entries) => {
+//         entries.forEach((entry) => {
+//           if (entry.isIntersecting && !hasAnimated) {
+//             setHasAnimated(true);
+//           }
+//         });
+//       },
+//       { threshold: 0.15, rootMargin: "0px 0px -80px 0px" }
+//     );
+
+//     if (sectionRef.current) {
+//       observer.observe(sectionRef.current);
+//     }
+
+//     return () => {
+//       if (sectionRef.current) {
+//         observer.unobserve(sectionRef.current);
+//       }
+//     };
+//   }, [hasAnimated]);
 
 //   const scrollLeft = () => {
 //     if (scrollContainerRef.current) {
-//       scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+//       scrollContainerRef.current.scrollBy({ left: -320, behavior: "smooth" });
 //     }
 //   };
 
 //   const scrollRight = () => {
 //     if (scrollContainerRef.current) {
-//       scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+//       scrollContainerRef.current.scrollBy({ left: 320, behavior: "smooth" });
 //     }
 //   };
 
 //   return (
-//     <section className="overflow-x-hidden bg-gradient-to-br from-gray-50 to-white py-12">
+//     <section ref={sectionRef} className="overflow-x-hidden bg-gradient-to-br from-gray-50 to-white py-12">
 //       <div className="mx-auto max-w-7xl px-4">
-//         {/* Header */}
+//         {/* Header with smooth scroll animations */}
 //         <div className="mb-8 text-center">
-//           <div className="inline-flex items-center gap-2 rounded-full bg-[#6EDC8C]/10 px-4 py-1.5 mb-3">
+//           <div
+//             className={`inline-flex items-center gap-2 rounded-full bg-[#6EDC8C]/10 px-4 py-1.5 mb-3 transition-all duration-700 ${hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+//               }`}
+//           >
 //             <span className="text-xs font-semibold text-[#0E2A5A]">हमारी विशेषज्ञताएं</span>
 //           </div>
-//          <div className="flex items-center justify-center gap-3">
 
-//   {/* Left Capsule */}
-//   <Image
-//     src="/images/capsule.png"
-//     alt="Capsule"
-//     width={42}
-//     height={42}
-//     className="animate-[spin_8s_linear_infinite]"
-//   />
+//           <div
+//             className={`flex items-center justify-center gap-3 transition-all duration-700 delay-100 ${hasAnimated ? "opacity-100 scale-100" : "opacity-0 scale-95"
+//               }`}
+//           >
+//             <Image
+//               src="/images/capsule.png"
+//               alt="Capsule"
+//               width={42}
+//               height={42}
+//               className="animate-[spin_8s_linear_infinite]"
+//             />
+//             {/* <h2 className="text-3xl font-semibold text-[#0E2A5A] md:text-4xl">
+//               Our <span className="text-[#6EDC8C]">Specializations</span>
+//             </h2> */}
+//             <h2 className="text-[28px] font-semibold leading-[1.2] text-[#0E2A5A] md:text-[42px] md:font-bold">
+//               Our <span className="text-[#6EDC8C]">Specializations</span>
+//             </h2>
+//             <Image
+//               src="/images/capsule.png"
+//               alt="Capsule"
+//               width={42}
+//               height={42}
+//               className="animate-[spin_8s_linear_infinite_reverse]"
+//             />
+//           </div>
 
-//   {/* Heading */}
-//   <h2 className="text-3xl font-semibold text-[#0E2A5A] md:text-4xl">
-//     Our <span className="text-[#6EDC8C]">Specializations</span>
-//   </h2>
-
-//   {/* Right Capsule */}
-//   <Image
-//     src="/images/capsule.png"
-//     alt="Capsule"
-//     width={42}
-//     height={42}
-//     className="animate-[spin_8s_linear_infinite_reverse]"
-//   />
-
-// </div>
-//           <div className="mt-3 flex items-center justify-center gap-2">
+//           <div
+//             className={`mt-3 flex items-center justify-center gap-2 transition-all duration-700 delay-200 ${hasAnimated ? "opacity-100" : "opacity-0"
+//               }`}
+//           >
 //             <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#6EDC8C]"></div>
-//             <div className="h-2 w-2 rounded-full bg-[#6EDC8C]"></div>
+//             <div className="h-2 w-2 rounded-full bg-[#6EDC8C] animate-pulse"></div>
 //             <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#6EDC8C]"></div>
 //           </div>
-//           <p className="mt-3 text-sm text-gray-500">होम्योपैथिक द्वारा विभिन्न रोगों का सफल इलाज</p>
+
+//           <p
+//             className={`mt-3 text-sm text-gray-500 transition-all duration-700 delay-300 ${hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+//               }`}
+//           >
+//             होम्योपैथिक द्वारा विभिन्न रोगों का सफल इलाज
+//           </p>
 //         </div>
 
 //         {/* Horizontal Scrollable Container */}
@@ -254,14 +293,18 @@
 //           {/* Scroll Buttons */}
 //           <button
 //             onClick={scrollLeft}
-//             className="absolute left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 shadow-lg text-[#0E2A5A] opacity-0 transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white lg:flex"
+//             className={`absolute left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 shadow-lg text-[#0E2A5A] transition-all duration-500 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white lg:flex ${hasAnimated ? "opacity-100" : "opacity-0"
+//               }`}
+//             style={{ transitionDelay: "400ms" }}
 //           >
 //             <ChevronLeft className="h-5 w-5" />
 //           </button>
 
 //           <button
 //             onClick={scrollRight}
-//             className="absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 shadow-lg text-[#0E2A5A] opacity-0 transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white lg:flex"
+//             className={`absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-white p-2 shadow-lg text-[#0E2A5A] transition-all duration-500 hover:scale-110 hover:bg-[#0E2A5A] hover:text-white lg:flex ${hasAnimated ? "opacity-100" : "opacity-0"
+//               }`}
+//             style={{ transitionDelay: "400ms" }}
 //           >
 //             <ChevronRight className="h-5 w-5" />
 //           </button>
@@ -271,8 +314,8 @@
 //             ref={scrollContainerRef}
 //             className="flex gap-5 overflow-x-auto scroll-smooth pb-4"
 //             style={{
-//               scrollbarWidth: 'thin',
-//               msOverflowStyle: 'auto',
+//               scrollbarWidth: "thin",
+//               msOverflowStyle: "auto",
 //             }}
 //           >
 //             <style jsx>{`
@@ -284,18 +327,59 @@
 //                 border-radius: 10px;
 //               }
 //               div::-webkit-scrollbar-thumb {
-//                 background: #6EDC8C;
+//                 background: #6edc8c;
 //                 border-radius: 10px;
 //               }
 //               div::-webkit-scrollbar-thumb:hover {
-//                 background: #4CAF50;
+//                 background: #4caf50;
 //               }
+
+//               @keyframes slideUp {
+//                 from {
+//                   opacity: 0;
+//                   transform: translateY(50px);
+//                 }
+//                 to {
+//                   opacity: 1;
+//                   transform: translateY(0);
+//                 }
+//               }
+
+//               .card-slide {
+//                 opacity: 0;
+//               }
+
+//               .card-slide.animate {
+//                 animation: slideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+//               }
+
+//               .card-slide.animate:nth-child(1) { animation-delay: 0.05s; }
+//               .card-slide.animate:nth-child(2) { animation-delay: 0.1s; }
+//               .card-slide.animate:nth-child(3) { animation-delay: 0.15s; }
+//               .card-slide.animate:nth-child(4) { animation-delay: 0.2s; }
+//               .card-slide.animate:nth-child(5) { animation-delay: 0.25s; }
+//               .card-slide.animate:nth-child(6) { animation-delay: 0.3s; }
+//               .card-slide.animate:nth-child(7) { animation-delay: 0.35s; }
+//               .card-slide.animate:nth-child(8) { animation-delay: 0.4s; }
+//               .card-slide.animate:nth-child(9) { animation-delay: 0.45s; }
+//               .card-slide.animate:nth-child(10) { animation-delay: 0.5s; }
+//               .card-slide.animate:nth-child(11) { animation-delay: 0.55s; }
+//               .card-slide.animate:nth-child(12) { animation-delay: 0.6s; }
+//               .card-slide.animate:nth-child(13) { animation-delay: 0.65s; }
+//               .card-slide.animate:nth-child(14) { animation-delay: 0.7s; }
+//               .card-slide.animate:nth-child(15) { animation-delay: 0.75s; }
+//               .card-slide.animate:nth-child(16) { animation-delay: 0.8s; }
+//               .card-slide.animate:nth-child(17) { animation-delay: 0.85s; }
+//               .card-slide.animate:nth-child(18) { animation-delay: 0.9s; }
+//               .card-slide.animate:nth-child(19) { animation-delay: 0.95s; }
+//               .card-slide.animate:nth-child(20) { animation-delay: 1s; }
 //             `}</style>
 
 //             {specializations.map((item) => (
 //               <div
 //                 key={item.id}
-//                 className="w-[320px] flex-shrink-0 bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
+//                 className={`card-slide w-[320px] flex-shrink-0 bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col ${hasAnimated ? "animate" : ""
+//                   }`}
 //               >
 //                 {/* Image */}
 //                 <div className="relative h-44 w-full overflow-hidden">
@@ -303,49 +387,50 @@
 //                     src={item.image}
 //                     alt={item.title}
 //                     fill
-//                     className="object-cover transition-transform duration-500 hover:scale-110"
+//                     className="object-cover transition-transform duration-700 hover:scale-110"
 //                   />
-//                   <div className="absolute top-3 left-3">
-//                     <div className="bg-[#6EDC8C] rounded-md px-2 py-0.5">
-//                       <span className="text-xs font-bold text-[#0E2A5A]">#{item.id}</span>
+//                   <div className="absolute top-3 left-3 transition-transform duration-300 hover:scale-110">
+//                     <div className="bg-[#6EDC8C] rounded-md px-2 py-0.5 shadow-md">
+//                       <span className="text-xs font-bold text-[#0E2A5A]">
+//                         #{item.id}
+//                       </span>
 //                     </div>
 //                   </div>
 //                 </div>
 
 //                 {/* Content */}
 //                 <div className="p-4 flex flex-col flex-1">
-//                   <h3 className="text-base font-bold text-[#0E2A5A] mb-2">
+//                   <h3 className="text-base font-bold text-[#0E2A5A] mb-2 transition-colors duration-300 hover:text-[#6EDC8C]">
 //                     {item.title}
 //                   </h3>
-//                   <p className="text-xs text-gray-600 leading-relaxed">
+//                   <p className="text-xs text-gray-600 leading-relaxed line-clamp-3">
 //                     {item.description}
 //                   </p>
 
-//                   {/* Spacer to push buttons to bottom */}
 //                   <div className="flex-1"></div>
 
-//                   {/* Contact Section - All buttons at bottom on same line */}
+//                   {/* Contact Section */}
 //                   <div className="mt-4 flex items-center gap-2 flex-nowrap w-full">
 //                     <Link
-//                       href={`tel:${item.phone.replace(/\s/g, '')}`}
-//                       className="flex-1 flex items-center justify-center gap-1.5 rounded-lg bg-[#6EDC8C] px-2 py-2 text-xs font-semibold text-[#0E2A5A] transition-all duration-300 hover:bg-[#5bc87a] hover:scale-105 whitespace-nowrap"
+//                       href={`tel:${item.phone.replace(/\s/g, "")}`}
+//                       className="flex-1 flex items-center justify-center gap-1.5 rounded-lg bg-[#6EDC8C] px-2 py-2 text-xs font-semibold text-[#0E2A5A] transition-all duration-300 hover:bg-[#5bc87a] hover:scale-105 whitespace-nowrap group/btn"
 //                     >
-//                       <Phone className="h-3 w-3 flex-shrink-0" />
+//                       <Phone className="h-3 w-3 flex-shrink-0 transition-transform duration-300 group-hover/btn:rotate-12" />
 //                       <span>Call Now</span>
 //                     </Link>
 
 //                     <Link
 //                       href={item.facebook}
 //                       target="_blank"
-//                       className="rounded-lg bg-red-600 p-2 text-white transition-all duration-300 hover:bg-red-700 hover:scale-105 flex-shrink-0"
+//                       className="rounded-lg bg-red-600 p-2 text-white transition-all duration-300 hover:bg-red-700 hover:scale-110 hover:rotate-3 flex-shrink-0"
 //                     >
-//                       <FaYoutube  className="h-3 w-3 text-white" />
+//                       <FaYoutube className="h-3 w-3 text-white" />
 //                     </Link>
 
 //                     <Link
 //                       href={item.instagram}
 //                       target="_blank"
-//                       className="rounded-lg bg-gradient-to-r from-[#E4405F] to-[#833AB4] p-2 text-white transition-all duration-300 hover:opacity-90 hover:scale-105 flex-shrink-0"
+//                       className="rounded-lg bg-gradient-to-r from-[#E4405F] to-[#833AB4] p-2 text-white transition-all duration-300 hover:opacity-90 hover:scale-110 hover:-rotate-3 flex-shrink-0"
 //                     >
 //                       <FaInstagram className="h-3 w-3" />
 //                     </Link>
@@ -357,14 +442,19 @@
 //         </div>
 
 //         {/* Scroll Hint */}
-//         <div className="mt-6 text-center">
-//           <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5">
+//         <div
+//           className={`mt-6 text-center transition-all duration-700 delay-700 ${hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+//             }`}
+//         >
+//           <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5 transition-all duration-300 hover:bg-gray-200 cursor-pointer group/hint">
 //             <div className="flex gap-1">
-//               <div className="h-1.5 w-4 rounded-full bg-[#6EDC8C]"></div>
-//               <div className="h-1.5 w-1.5 rounded-full bg-gray-300"></div>
-//               <div className="h-1.5 w-1.5 rounded-full bg-gray-300"></div>
+//               <div className="h-1.5 w-4 rounded-full bg-[#6EDC8C] animate-pulse"></div>
+//               <div className="h-1.5 w-1.5 rounded-full bg-gray-300 transition-all duration-300 group-hover/hint:bg-[#6EDC8C]"></div>
+//               <div className="h-1.5 w-1.5 rounded-full bg-gray-300 transition-all duration-300 delay-100 group-hover/hint:bg-[#6EDC8C]"></div>
 //             </div>
-//             <span className="text-xs text-gray-500">Scroll to see more →</span>
+//             <span className="text-xs text-gray-500 transition-colors duration-300 group-hover/hint:text-[#0E2A5A]">
+//               Scroll to see more →
+//             </span>
 //           </div>
 //         </div>
 //       </div>
@@ -629,10 +719,7 @@ export default function Specializations() {
               height={42}
               className="animate-[spin_8s_linear_infinite]"
             />
-            {/* <h2 className="text-3xl font-semibold text-[#0E2A5A] md:text-4xl">
-              Our <span className="text-[#6EDC8C]">Specializations</span>
-            </h2> */}
-            <h2 className="text-[28px] font-semibold leading-[1.2] text-[#0E2A5A] md:text-[42px] md:font-bold">
+            <h2 className="text-[28px] font-semibold leading-[1.2] text-[#0E2A5A] md:text-[42px] md:font-semibold">
               Our <span className="text-[#6EDC8C]">Specializations</span>
             </h2>
             <Image
@@ -776,7 +863,9 @@ export default function Specializations() {
                   <h3 className="text-base font-bold text-[#0E2A5A] mb-2 transition-colors duration-300 hover:text-[#6EDC8C]">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-gray-600 leading-relaxed line-clamp-3">
+                  
+                  {/* Full text - removed line-clamp-3 */}
+                  <p className="text-xs text-gray-600 leading-relaxed">
                     {item.description}
                   </p>
 
