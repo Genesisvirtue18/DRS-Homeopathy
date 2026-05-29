@@ -1,141 +1,4 @@
-// import { NextResponse } from "next/server";
-
-// export async function POST(req: Request) {
-
-//   try {
-
-//     const body = await req.json();
-
-//     const prompt = `
-// You are an expert AI hair specialist.
-
-// Analyze the user's hair condition using the provided data.
-
-// Return ONLY valid JSON.
-
-// No markdown.
-// No explanation.
-// No code block.
-
-// Required JSON format:
-
-// {
-//   "name": "${body.name}",
-//   "hairFallImage": "${body.hairFallImage}",
-//   "stage": "",
-//   "risk": "",
-//   "timeline": "",
-//   "regrowthChance": 0,
-//   "summary": "",
-//   "rootCauses": [],
-//   "recommendations": []
-// }
-
-// USER DATA:
-// ${JSON.stringify(body, null, 2)}
-// `;
-
-//     const response = await fetch(
-//       "https://api.groq.com/openai/v1/chat/completions",
-//       {
-//         method: "POST",
-
-//         headers: {
-//           "Content-Type": "application/json",
-
-//           Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
-//         },
-
-//         body: JSON.stringify({
-
-//           model: "llama-3.3-70b-versatile",
-
-//           messages: [
-//             {
-//               role: "system",
-//               content:
-//                 "You are a professional AI hair analysis expert. Always return clean JSON only.",
-//             },
-
-//             {
-//               role: "user",
-//               content: prompt,
-//             },
-//           ],
-
-//           temperature: 0.5,
-
-//           max_tokens: 1200,
-//         }),
-//       }
-//     );
-
-//     const data = await response.json();
-    
-
-//     console.log("FULL GROQ RESPONSE:");
-//     console.log(JSON.stringify(data, null, 2));
-
-//     const content =
-//       data.choices?.[0]?.message?.content;
-
-//     if (!content) {
-
-//       return NextResponse.json(
-//         {
-//           error: "No AI response received",
-//         },
-//         {
-//           status: 500,
-//         }
-//       );
-//     }
-
-//     // CLEAN RESPONSE
-//     const cleaned = content
-//       .replace(/```json/g, "")
-//       .replace(/```/g, "")
-//       .trim();
-
-//     let parsed;
-
-//     try {
-
-//       parsed = JSON.parse(cleaned);
-
-//     } catch (err) {
-
-//       console.log("INVALID JSON:");
-//       console.log(cleaned);
-
-//       return NextResponse.json(
-//         {
-//           error: "Invalid AI JSON response",
-//           raw: cleaned,
-//         },
-//         {
-//           status: 500,
-//         }
-//       );
-//     }
-
-//     return NextResponse.json(parsed);
-
-//   } catch (error) {
-
-//     console.log("AI ERROR:", error);
-
-//     return NextResponse.json(
-//       {
-//         error: "AI analysis failed",
-//       },
-//       {
-//         status: 500,
-//       }
-//     );
-//   }
-// }
-
+import { client } from "@/lib/client";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -300,6 +163,11 @@ export async function POST(req: Request) {
     // =========================================
     // AI PROMPT
     // =========================================
+    const cleanedBody = {
+  ...body,
+  scalpImage: "uploaded-image",
+};
+
 
     const prompt = `
 You are an expert AI hair specialist.
@@ -336,7 +204,7 @@ Return ONLY valid JSON.
 }
 
 USER DATA:
-${JSON.stringify(body, null, 2)}
+${JSON.stringify(cleanedBody, null, 2)}
 `;
 
     console.log("PROMPT:");
@@ -564,6 +432,99 @@ parsed.recommendations = recommendations;
         }
       );
     }
+
+    // SAVE TO SANITY
+console.log("=================================");
+console.log("STARTING SANITY SAVE");
+console.log("=================================");
+
+console.log("SANITY TOKEN EXISTS:");
+console.log(!!process.env.SANITY_API_TOKEN);
+
+console.log("PROJECT ID:");
+console.log(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID);
+
+console.log("DATASET:");
+console.log(process.env.NEXT_PUBLIC_SANITY_DATASET);
+
+console.log("DATA TO SAVE:");
+console.log({
+  name: body.name,
+  mobile: body.mobile,
+  age: body.age,
+  gender: body.gender,
+  stage: parsed.stage,
+  risk: parsed.risk,
+});
+
+try {
+
+  const sanityResponse = await client.create({
+
+    _type: "hairTest",
+
+    // USER INFO
+    name: body.name || "",
+    mobile: body.mobile || "",
+    age: Number(body.age) || 0,
+    gender: body.gender || "",
+    scalpImage: body.scalpImage || "",
+
+    // HAIR INFO
+    hairFallImage: body.hairFallImage || "",
+    familyHistory: body.familyHistory || "",
+    dandruff: body.dandruff || "",
+
+    // INTERNAL HEALTH
+    sleep: body.sleep || "",
+    stress: body.stress || "",
+    constipation: body.constipation || "",
+    gas: body.gas || "",
+    energy: body.energy || "",
+    supplements: body.supplements || "",
+
+    // AI RESULT
+    stage: parsed.stage || "",
+    risk: parsed.risk || "",
+    timeline: parsed.timeline || "",
+    regrowthChance: parsed.regrowthChance || 0,
+    summary: parsed.summary || "",
+
+    rootCauses: parsed.rootCauses || [],
+    recommendations: parsed.recommendations || [],
+
+    createdAt: new Date().toISOString(),
+  });
+
+  console.log("=================================");
+  console.log("SANITY SAVE SUCCESS");
+  console.log("=================================");
+
+  console.log(sanityResponse);
+
+} catch (sanityError: any) {
+
+  console.log("=================================");
+  console.log("SANITY SAVE ERROR");
+  console.log("=================================");
+
+  console.log("ERROR MESSAGE:");
+  console.log(sanityError.message);
+
+  console.log("FULL ERROR:");
+  console.log(sanityError);
+
+  console.log("STATUS CODE:");
+  console.log(sanityError.statusCode);
+
+  console.log("RESPONSE BODY:");
+  console.log(sanityError.responseBody);
+
+  console.log("DETAILS:");
+  console.log(sanityError.details);
+
+  throw sanityError;
+}
 
     return NextResponse.json(parsed);
 

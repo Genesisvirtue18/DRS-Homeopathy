@@ -38,6 +38,83 @@ export default function ScalpAssessmentStep({ formData, setFormData, onComplete 
     setFormData({ ...formData, scalpImage: null });
   };
 
+// const handleSubmit = async () => {
+
+//   if (!imageFile) {
+//     alert("Please upload a scalp image");
+//     return;
+//   }
+
+//   try {
+
+//     // FINAL PAYLOAD
+//     const payload = {
+//       ...formData,
+//       scalpImage: uploadedImage,
+//     };
+
+//     // DEBUG FRONTEND DATA
+//     console.log("=================================");
+//     console.log("FRONTEND PAYLOAD");
+//     console.log(payload);
+//     console.log("=================================");
+
+//     // CALL AI API
+//     const response = await fetch(
+//       "/api/ai-hair-analysis",
+//       {
+//         method: "POST",
+
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+
+//         body: JSON.stringify(payload),
+//       }
+//     );
+
+//     // DEBUG RESPONSE STATUS
+//     console.log("API STATUS:", response.status);
+
+//     const result = await response.json();
+
+//     // DEBUG AI RESULT
+//     console.log("=================================");
+//     console.log("AI RESULT");
+//     console.log(result);
+//     console.log("=================================");
+
+//     // CHECK API ERROR
+//     if (!response.ok) {
+
+//       console.log("API ERROR:");
+//       console.log(result);
+
+//       alert(result.error || "AI analysis failed");
+
+//       return;
+//     }
+
+//     // SAVE RESULT
+//     localStorage.setItem(
+//       "aiHairTestResult",
+//       JSON.stringify(result)
+//     );
+
+//     // REDIRECT
+//     router.push("/ai-hair-test/result");
+
+//   } catch (error) {
+
+//     console.log("=================================");
+//     console.log("FRONTEND ERROR");
+//     console.log(error);
+//     console.log("=================================");
+
+//     alert("AI analysis failed");
+//   }
+// };
+
 const handleSubmit = async () => {
 
   if (!imageFile) {
@@ -47,69 +124,67 @@ const handleSubmit = async () => {
 
   try {
 
-    // FINAL PAYLOAD
-    const payload = {
-      ...formData,
-      scalpImage: uploadedImage,
-    };
+    // CONVERT IMAGE TO BASE64
+    const reader = new FileReader();
 
-    // DEBUG FRONTEND DATA
-    console.log("=================================");
-    console.log("FRONTEND PAYLOAD");
-    console.log(payload);
-    console.log("=================================");
+    reader.readAsDataURL(imageFile);
 
-    // CALL AI API
-    const response = await fetch(
-      "/api/ai-hair-analysis",
-      {
-        method: "POST",
+    reader.onloadend = async () => {
 
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const base64Image = reader.result;
 
-        body: JSON.stringify(payload),
-      }
-    );
+      // FINAL PAYLOAD
+      const payload = {
+        ...formData,
+        scalpImage: base64Image,
+      };
 
-    // DEBUG RESPONSE STATUS
-    console.log("API STATUS:", response.status);
+      console.log("=================================");
+      console.log("FRONTEND PAYLOAD");
+      console.log(payload);
+      console.log("=================================");
 
-    const result = await response.json();
+      // API CALL
+      const response = await fetch(
+        "/api/ai-hair-analysis",
+        {
+          method: "POST",
 
-    // DEBUG AI RESULT
-    console.log("=================================");
-    console.log("AI RESULT");
-    console.log(result);
-    console.log("=================================");
+          headers: {
+            "Content-Type": "application/json",
+          },
 
-    // CHECK API ERROR
-    if (!response.ok) {
+          body: JSON.stringify(payload),
+        }
+      );
 
-      console.log("API ERROR:");
+      console.log("API STATUS:", response.status);
+
+      const result = await response.json();
+
+      console.log("=================================");
+      console.log("AI RESULT");
       console.log(result);
+      console.log("=================================");
 
-      alert(result.error || "AI analysis failed");
+      if (!response.ok) {
 
-      return;
-    }
+        alert(result.error || "AI analysis failed");
 
-    // SAVE RESULT
-    localStorage.setItem(
-      "aiHairTestResult",
-      JSON.stringify(result)
-    );
+        return;
+      }
 
-    // REDIRECT
-    router.push("/ai-hair-test/result");
+      localStorage.setItem(
+        "aiHairTestResult",
+        JSON.stringify(result)
+      );
+
+      router.push("/ai-hair-test/result");
+    };
 
   } catch (error) {
 
-    console.log("=================================");
-    console.log("FRONTEND ERROR");
     console.log(error);
-    console.log("=================================");
 
     alert("AI analysis failed");
   }
